@@ -82,10 +82,10 @@ class LasiusCorePreload extends \XoopsPreloadItem
 		$script .= "var Lasius_revivenewmembersblock = " . $helper->getConfig('revivenewmembersblock') . ";\n";
 		$script .= "var Lasius_revivenewmembersblock_title = '" . $tools->getBlockTitle('b_system_newmembers_show') . "';\n";
 		
-		/*
+		
 		$script .= "var Lasius_reviverecentcommentsblock = " . $helper->getConfig('reviverecentcommentsblock') . ";\n";
 		$script .= "var Lasius_reviverecentcommentsblock_title = '" . $tools->getBlockTitle('b_system_comments_show') . "';\n";
-		*/
+		
 		//$script .= "});"."\n";
 		$GLOBALS['xoTheme']->addScript('', '', $script);
 		$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/lasius/assets/js/agent.js');

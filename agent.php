@@ -59,6 +59,14 @@ switch ($type) {
 		$tpl->assign('block', $result);	
 		$tpl->display(XOOPS_ROOT_PATH . "/modules/system/templates/blocks/system_block_newusers.tpl");
         break;
+	case "recentcomments":
+		$tpl = new XoopsTpl();
+		$tpl->caching = 0;
+		$o = $tools->getBlockOptions("b_system_comments_show");
+		$result = b_system_comments_show($o);
+		$tpl->assign('block', $result);	
+		$tpl->display(XOOPS_ROOT_PATH . "/modules/system/templates/blocks/system_block_comments.tpl");
+        break;
 }
 
 $GLOBALS['xoopsLogger']->activated = false;
