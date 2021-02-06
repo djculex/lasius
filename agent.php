@@ -27,24 +27,19 @@ include dirname(dirname(__DIR__)) . '/mainfile.php';
 require_once XOOPS_ROOT_PATH . '/class/template.php';
 include_once XOOPS_ROOT_PATH .'/modules/system/blocks/system_blocks.php';
 
-/**
- * @return array|bool
- */
- 
+// Type of block ("onlinenow", "topposters") etc
 $type = Request::getString('type', '', 'GET');
+// Name of module user is watching
+$name = Request::getString('name', '', 'GET');
 $tools = new tools();
 
 switch ($type) {
     case "onlinenow":
-		//$moduleHandler = xoops_getHandler('module');
-		//$module  = $moduleHandler->get($mid);
 		$tpl = new XoopsTpl();
 		$tpl->caching = 0;
-		$result = b_system_online_show();
+		$result = $tools->b_system_online_show($name);
 		$tpl->assign('block', $result);	
 		$tpl->display(XOOPS_ROOT_PATH . "/modules/system/templates/blocks/system_block_online.tpl");
-		//unset($module);
-		//$tpl->display('db:system_block_online.tpl');
         break;
     case "topposters":
         //$moduleHandler = xoops_getHandler('module');
@@ -55,20 +50,14 @@ switch ($type) {
 		$result = b_system_topposters_show($o);
 		$tpl->assign('block', $result);	
 		$tpl->display(XOOPS_ROOT_PATH . "/modules/system/templates/blocks/system_block_topusers.tpl");
-		//unset($module);
-		//$tpl->display('db:system_block_online.tpl');
         break;
     case "newmembers":
-		//$moduleHandler = xoops_getHandler('module');
-		//$module  = $moduleHandler->get($mid);
 		$tpl = new XoopsTpl();
 		$tpl->caching = 0;
 		$o = $tools->getBlockOptions("b_system_newmembers_show");
 		$result = b_system_newmembers_show($o);
 		$tpl->assign('block', $result);	
 		$tpl->display(XOOPS_ROOT_PATH . "/modules/system/templates/blocks/system_block_newusers.tpl");
-		//unset($module);
-		//$tpl->display('db:system_block_online.tpl');
         break;
 }
 

@@ -30,8 +30,11 @@ class LasiusCorePreload extends \XoopsPreloadItem
 		/** @var \XoopsModules\Lasius\Helper $helper */
 		$helper = \XoopsModules\Lasius\Helper::getInstance();
 		$tools = new tools();
+		
+		$name = basename($_SERVER['REQUEST_URI']);
+		
 		// Include jquery new or framework ?
-		$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/lasius/assets/js/agent.js');
+		
 		if ($helper->getConfig('updatejquery') > 0) {
 			$GLOBALS['xoTheme']->addScript('', array('type' => 'text/javascript'), "
                 if (typeof jQuery == 'undefined') {
@@ -65,6 +68,8 @@ class LasiusCorePreload extends \XoopsPreloadItem
 		//$script = "jQuery(document).ready(function(){"."\n";
 		$script  = "var Lasius_systemurl = '" . XOOPS_URL . "/modules/lasius';\n";
 		
+		$script  .= "var Lasius_refurl = '".$name. "';\n";
+		
 		$script .= "var Lasius_reviveonlineusersblock = " . $helper->getConfig('reviveonlineusersblock').";\n";
 		$script .= "var Lasius_reviveonlineusersblock_title = '" . $tools->getBlockTitle('b_system_online_show') . "';\n";
 		//$script .= "var Lasius_reviveonlineusers_searcharray = ['" ._MEMBERS . "', '"._GUESTS."','"._MORE."'];\n";
@@ -81,7 +86,8 @@ class LasiusCorePreload extends \XoopsPreloadItem
 		*/
 		//$script .= "});"."\n";
 		$GLOBALS['xoTheme']->addScript('', '', $script);
-		
+		$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/lasius/assets/js/agent.js');
+		$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/lasius/assets/js/lasius.js');
 	}
     /**
      * @param $args
