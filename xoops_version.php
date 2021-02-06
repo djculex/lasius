@@ -105,6 +105,16 @@ $modversion['config'][] = [
 	'default'     => 0,
 ];
 
+// replace popups with jqueryUI dialog
+$modversion['config'][] = [
+	'name'        => 'LASIUSUSEDIALOG',
+	'title'       => '_MI_LASIUS_USEDIALOG',
+	'description' => '_MI_LASIUS_USEDIALOG_DESC',
+	'formtype'    => 'yesno',
+	'valuetype'   => 'int',
+	'default'     => 0,
+];
+
 // Start auto-revive system blocks
 $modversion['config'][] = [
 	'name'        => 'reviveonlineusersblock',

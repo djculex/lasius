@@ -60,6 +60,11 @@ define('_MI_LASIUS_UPDJQUERY', 'Opdate jQuery to newest');
 define('_MI_LASIUS_UPDJQUERY_DESC', 'Overwrite jQyery if already loaded in your template to newest version.<br>If not already loaded it will be included. And if \'NO\' the xoops/theme jquery will be used.');
 define('_MI_LASIUS_UPDJQUERYUI', 'Include jQueryUI ?');
 define('_MI_LASIUS_UPDJQUERYUI_DESC', 'Include jquery UI if not present<br>If \'NO\' it will only be present if already loaded by xoops/theme.');
+
+// use Jquery dialog instead of pop-update
+define('_MI_LASIUS_USEDIALOG', 'Replace pop-ups with dialog ?');
+define('_MI_LASIUS_USEDIALOG_DESC', 'Use jQueryUI dialog instead of popups?<br>If \'NO\' default Xoops popups will be used.Else jquerUI dialog will be used <a href="https://jqueryui.com/dialog/" target="_BLANK"> Se demo here </a>.');
+
 // revive blocks
 define('_MI_LASIUS_REVIVE_ONLINEUSERS_BLOCK', 'Auto refresh \'Online users\' block ?');
 define('_MI_LASIUS_REVIVE_ONLINEUSERS_BLOCK_DESC', 'Automaticly refresh the block \'Online users\' block every x seconds');

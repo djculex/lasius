@@ -70,6 +70,8 @@ class LasiusCorePreload extends \XoopsPreloadItem
 		
 		$script  .= "var Lasius_refurl = '".$name. "';\n";
 		
+		$script  .= "var Lasius_usepopups = ".$helper->getConfig('LASIUSUSEDIALOG').";\n";
+		
 		$script .= "var Lasius_reviveonlineusersblock = " . $helper->getConfig('reviveonlineusersblock').";\n";
 		$script .= "var Lasius_reviveonlineusersblock_title = '" . $tools->getBlockTitle('b_system_online_show') . "';\n";
 		//$script .= "var Lasius_reviveonlineusers_searcharray = ['" ._MEMBERS . "', '"._GUESTS."','"._MORE."'];\n";
