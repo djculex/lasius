@@ -9,6 +9,9 @@ jQuery( document ).ready(function() {
 			var interValStart_topposters = setInterval(SystemBlock_checkTopPosters, 5000); 
 			var interValStart_newmembers = setInterval(SystemBlock_checkNewMembers, 5000); 
 			var interValStart_checkrecentcomments = setInterval(SystemBlock_checkRecentComments, 5000); 
+			var interValStart_recentpublisherarticles = setInterval(SystemBlock_checkRecentPublisherArticles, 5000); 
+			var interValStart_recentpublishernews = setInterval(SystemBlock_checkRecentPublisherNews, 5000); 
+			
 			
 			
 			var mutationObserver = new MutationObserver(function(mutations) {
@@ -34,6 +37,13 @@ jQuery( document ).ready(function() {
 					interValStart_checkrecentcomments = (Lasius_reviverecentcommentsblock > 0) ? setInterval(SystemBlock_checkRecentComments, (Lasius_reviverecentcommentsblock * 1000)) : interValStart_checkrecentcomments = undefined; 
 				}
 				
+				if (!interValStart_recentpublisherarticles) {
+					interValStart_recentpublisherarticles = (Lasius_reviverecentpublisherarticlesblock > 0) ? setInterval(SystemBlock_checkRecentPublisherArticles, (Lasius_reviverecentpublisherarticlesblockblock * 1000)) : interValStart_recentpublisherarticles = undefined; 
+				}
+				
+				if (!interValStart_recentpublishernews) {
+					interValStart_recentpublishernews = (Lasius_reviverecentpublishernewsblock > 0) ? setInterval(SystemBlock_checkRecentPublisherNews, (Lasius_reviverecentpublishernewsblock * 1000)) : interValStart_recentpublishernews = undefined; 
+				}
 			});
 
 			// start searching dom for mutations f.i. from dynamic smarty includes
@@ -44,8 +54,8 @@ jQuery( document ).ready(function() {
 				attributes: true
 			});
 			
-			// Check online users function called with interval.
-			
+
+			// Check new members block 
 			function SystemBlock_checkNewMembers() {
 				this.interValStart_newmembers = undefined; //reset interval				
 				if (Lasius_revivenewmembersblock_title > 0) {
@@ -63,6 +73,7 @@ jQuery( document ).ready(function() {
 				
 			}
 			
+			// Check top posters
 			function SystemBlock_checkTopPosters() {
 				this.interValStart_topposters = undefined; //reset interval			
 				if (Lasius_revivetoppostersblock > 0) {
@@ -80,7 +91,7 @@ jQuery( document ).ready(function() {
 					
 			}
 
-			// function called with interval.
+			// Check online users
 			function SystemBlock_checkOnlineUsers() {
 					// if interval is set do smarty include
 					this.interValStart_onlineusers = undefined; //reset interval	
@@ -115,8 +126,45 @@ jQuery( document ).ready(function() {
 								//console.log('replace  topposters block.');
 								//console.log(Lasius_systemurl + "/agent.php?type=topposters");
 						}).fadeIn('slow');
-					}
-								
+					}			
 			}
+			
+			// Check recent articles.
+			function SystemBlock_checkRecentPublisherArticles() {
+					this.interValStart_recentpublisherarticles = undefined; //reset interval	
+					if (Lasius_reviverecentpublisherarticlesblock > 0) {
+						
+						jQuery('div:contains("' + Lasius_reviverecentpublisherarticlesblock_title + '")').next(".blockContent").load(Lasius_systemurl + "/agent.php?type=recentpublisherarticles", function() {
+						//console.log('replace  topposters block.');
+						//console.log(Lasius_systemurl + "/agent.php?type=topposters");
+						}).fadeIn('slow');
+						
+						jQuery('aside h4.block-title:contains("' + Lasius_reviverecentpublisherarticlesblock_title + '")').parent("aside").load(Lasius_systemurl + "/agent.php?type=recentpublisherarticles", function() {
+							jQuery(this).prepend('<h4 class="block-title">' + Lasius_reviverecentpublisherarticlesblock_title + '</h4>');
+								//console.log('replace  topposters block.');
+								//console.log(Lasius_systemurl + "/agent.php?type=topposters");
+						}).fadeIn('slow');
+					}			
+			}
+			
+			// Check recent articles.
+			function SystemBlock_checkRecentPublisherNews() {
+					this.interValStart_recentpublishernews = undefined; //reset interval	
+					if (Lasius_reviverecentpublishernewsblock > 0) {
+						jQuery('div:contains("' + Lasius_reviverecentpublishernewsblock_title + '")').next(".blockContent").load(Lasius_systemurl + "/agent.php?type=recentpublishernews", function() {
+						console.log('replace  recent pub newe.');
+						console.log(Lasius_systemurl + "/agent.php?type=recentpublishernews");
+						}).fadeIn('slow');
+						
+						jQuery('aside h4.block-title:contains("' + Lasius_reviverecentpublishernewsblock_title + '")').parent("aside").load(Lasius_systemurl + "/agent.php?type=recentpublishernews", function() {
+							jQuery(this).prepend('<h4 class="block-title">' + Lasius_reviverecentpublishernewsblock_title + '</h4>');
+								//console.log('replace  topposters block.');
+								//console.log(Lasius_systemurl + "/agent.php?type=topposters");
+						}).fadeIn('slow');
+					}			
+			}
+			
+			
+			
 	});
 });

@@ -45,7 +45,6 @@ class LasiusCorePreload extends \XoopsPreloadItem
 		
 		$script .= "var Lasius_reviveonlineusersblock = " .$helper->getConfig('reviveonlineusersblock').";\n";
 		$script .= "var Lasius_reviveonlineusersblock_title = '" . $tools->getBlockTitle('b_system_online_show') . "';\n";
-		//$script .= "var Lasius_reviveonlineusers_searcharray = ['" ._MEMBERS . "', '"._GUESTS."','"._MORE."'];\n";
 		
 		$script .= "var Lasius_revivetoppostersblock = " . $helper->getConfig('revivetoppostersblock') . ";\n";
 		$script .= "var Lasius_revivetoppostersblock_title = '" . $tools->getBlockTitle('b_system_topposters_show') . "';\n";
@@ -56,6 +55,13 @@ class LasiusCorePreload extends \XoopsPreloadItem
 		
 		$script .= "var Lasius_reviverecentcommentsblock = " . $helper->getConfig('reviverecentcommentsblock') . ";\n";
 		$script .= "var Lasius_reviverecentcommentsblock_title = '" . $tools->getBlockTitle('b_system_comments_show') . "';\n";
+		
+		$script .= "var Lasius_reviverecentpublisherarticlesblock = " . $helper->getConfig('reviverecentpub_art_block') . ";\n";
+		$script .= "var Lasius_reviverecentpublisherarticlesblock_title = '" . $tools->getBlockTitle('publisher_items_recent_show') . "';\n";
+		
+		$script .= "var Lasius_reviverecentpublishernewsblock = " . $helper->getConfig('reviverecentpubnewsblock') . ";\n";
+		$script .= "var Lasius_reviverecentpublishernewsblock_title = '" . $tools->getBlockTitle('publisher_latest_news_show') . "';\n";
+		
 		$script .= "};"."\n";
 		//$script .= "});"."\n";
 		$GLOBALS['xoTheme']->addScript('', '', $script);

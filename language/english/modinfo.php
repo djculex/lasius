@@ -66,6 +66,7 @@ define('_MI_LASIUS_USEDIALOG', 'Replace pop-ups with dialog ?');
 define('_MI_LASIUS_USEDIALOG_DESC', 'Use jQueryUI dialog instead of popups?<br>If \'NO\' default Xoops popups will be used.Else jquerUI dialog will be used <a href="https://jqueryui.com/dialog/" target="_BLANK"> Se demo here </a>.');
 
 // revive blocks
+// system blocks
 define('_MI_LASIUS_REVIVE_ONLINEUSERS_BLOCK', 'Auto refresh \'Online users\' block ?');
 define('_MI_LASIUS_REVIVE_ONLINEUSERS_BLOCK_DESC', 'Automaticly refresh the block \'Online users\' block every x seconds');
 define('_MI_LASIUS_REVIVE_ONLINEUSERS_BLOCKSECS', 'Refresh \'online users\' every ?? secons ?');
@@ -80,5 +81,12 @@ define('_MI_LASIUS_REVIVE_NEWMEMBERS_BLOCKSECS', 'Refresh \'New Members\' every 
 define('_MI_LASIUS_REVIVE_RECENTCOMMENTS_BLOCK', 'Auto refresh \'Recent comments\' block ?');
 define('_MI_LASIUS_REVIVE_RECENTCOMMENTS_BLOCK_DESC', 'Automaticly refresh the block \'Recent comments\' block every x seconds');
 define('_MI_LASIUS_REVIVE_RECENTCOMMENTS_BLOCKSECS', 'Refresh \'Recent comments\' every ?? secons ?');
+
+// publisher blocks
+define('_MI_LASIUS_REVIVE_RECENTPUBLISHERARTICLES_BLOCK', 'Auto refresh \'Recent articles\' block ?');
+define('_MI_LASIUS_REVIVE_RECENTPUBLISHERARTICLES_BLOCK_DESC', 'Automaticly refresh the publisher block \'Recent articles\' block every x seconds');
+
+define('_MI_LASIUS_REVIVE_RECENTPUBLISHERNEWS_BLOCK', 'Auto refresh \'Recent Puclisher News\' block ?');
+define('_MI_LASIUS_REVIVE_RECENTPUBLISHERNEWS_BLOCK_DESC', 'Automaticly refresh the publisher News block \'Recent Publisher News\' block every x seconds');
 
 // ---------------- End ----------------

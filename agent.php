@@ -35,6 +35,9 @@ $type = Request::getString('type', '', 'GET');
 // Name of module user is watching
 $name = Request::getString('name', '', 'GET');
 $tools = new tools();
+// language files
+$language = $xoopsConfig['language'];
+
 
 switch ($type) {
     case "onlinenow":
@@ -71,6 +74,34 @@ switch ($type) {
 		$result = b_system_comments_show($o);
 		$tpl->assign('block', $result);	
 		$tpl->display("db:system_block_comments.tpl");
+        break;
+		
+	case "recentpublisherarticles": //publisher module
+		if (!file_exists(XOOPS_ROOT_PATH ."/modules/publisher/language/".$language."/blocks.php")) {
+			$language = 'english';
+		}
+		require_once XOOPS_ROOT_PATH .'/modules/publisher/blocks/items_recent.php';
+		require_once XOOPS_ROOT_PATH ."/modules/publisher/language/".$language."/blocks.php";
+		$tpl = new XoopsTpl();
+		$tpl->caching = 0;
+		$o = $tools->getBlockOptions("publisher_items_recent_show");
+		$result = publisher_items_recent_show($o);
+		$tpl->assign('block', $result);	
+		$tpl->display("db:publisher_items_recent.tpl");
+        break;
+		
+	case "recentpublishernews": //publisher module
+		if (!file_exists(XOOPS_ROOT_PATH ."/modules/publisher/language/".$language."/blocks.php")) {
+			$language = 'english';
+		}
+		require_once XOOPS_ROOT_PATH .'/modules/publisher/blocks/latest_news.php';
+		require_once XOOPS_ROOT_PATH ."/modules/publisher/language/".$language."/blocks.php";
+		$tpl = new XoopsTpl();
+		$tpl->caching = 0;
+		$o = $tools->getBlockOptions("publisher_latest_news_show");
+		$result = publisher_latest_news_show($o);
+		$tpl->assign('block', $result);	
+		$tpl->display("db:publisher_latest_news.tpl");
         break;
 		
 }

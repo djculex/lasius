@@ -213,6 +213,58 @@ $modversion['config'][] = [
 ];
 // End auto-revive system blocks
 
+// start auto-revive publisher blocks
+
+$modversion['config'][] = [
+	'name'        => 'reviverecentpub_art_block',
+	'title'       => '_MI_LASIUS_REVIVE_RECENTPUBLISHERARTICLES_BLOCK',
+	'description' => '_MI_LASIUS_REVIVE_RECENTPUBLISHERARTICLES_BLOCK_DESC',
+	'formtype'    => 'select',
+	'valuetype'   => 'int',
+	'default'     => 0,
+	'options'     => [
+		0 => '0',
+		5000 => '5', 
+		10000 => '10', 
+		15000 => '15', 
+		20000 => '20',
+		30000 => '30',
+		45000 => '45',
+		60000 => '60',
+		90000 => '90',
+		120000 => '120',
+		180000 => '180',
+		240000 => '240',
+		300000 => '300'
+	],
+];
+
+$modversion['config'][] = [
+	'name'        => 'reviverecentpubnewsblock',
+	'title'       => '_MI_LASIUS_REVIVE_RECENTPUBLISHERNEWS_BLOCK',
+	'description' => '_MI_LASIUS_REVIVE_RECENTPUBLISHERNEWS_BLOCK_DESC',
+	'formtype'    => 'select',
+	'valuetype'   => 'int',
+	'default'     => 0,
+	'options'     => [
+		0 => '0',
+		5000 => '5', 
+		10000 => '10', 
+		15000 => '15', 
+		20000 => '20',
+		30000 => '30',
+		45000 => '45',
+		60000 => '60',
+		90000 => '90',
+		120000 => '120',
+		180000 => '180',
+		240000 => '240',
+		300000 => '300'
+	],
+];
+
+// end auto-revive publisher blocks
+
 // ------------------- Config ------------------- //
 // Keywords
 /*
