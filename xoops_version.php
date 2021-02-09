@@ -24,19 +24,19 @@ declare(strict_types=1);
  */
 
 // 
-$moduleDirName      = \basename(__DIR__);
-$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
+$moduleDirName      = basename(__DIR__);
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
 // ------------------- Informations ------------------- //
 $modversion = [
 	'name'                => _MI_LASIUS_NAME,
-	'version'             => 1.0,
+	'version'             => 1.4,
 	'description'         => _MI_LASIUS_DESC,
 	'author'              => 'Culex',
 	'author_mail'         => 'culex@culex.dk',
 	'author_website_url'  => 'http://culex.dk',
 	'author_website_name' => 'culex.dk',
 	'credits'             => 'culex',
-	'license'             => 'GPL 2.0 or later',
+	'license'             => 'GPL 3.0 or later',
 	'license_url'         => 'http://www.gnu.org/licenses/gpl-3.0.en.html',
 	'help'                => 'page=help',
 	'release_info'        => 'release_info',
@@ -49,7 +49,7 @@ $modversion = [
 	'min_admin'           => '1.2',
 	'min_db'              => ['mysql' => '5.6', 'mysqli' => '5.6'],
 	'image'               => 'assets/images/logoModule.png',
-	'dirname'             => \basename(__DIR__),
+	'dirname'             => basename(__DIR__),
 	'dirmoduleadmin'      => 'Frameworks/moduleclasses/moduleadmin',
 	'sysicons16'          => '../../Frameworks/moduleclasses/icons/16',
 	'sysicons32'          => '../../Frameworks/moduleclasses/icons/32',
@@ -65,7 +65,7 @@ $modversion = [
 	'module_status'       => 'Beta 1',
 	'system_menu'         => 1,
 	'hasAdmin'            => 1,
-	'hasMain'             => 0,
+	'hasMain'             => 1,
 	'adminindex'          => 'admin/index.php',
 	'adminmenu'           => 'admin/menu.php',
 	'onInstall'           => 'include/install.php',
@@ -125,18 +125,18 @@ $modversion['config'][] = [
 	'default'     => 0,
 	'options'     => [
 		0 => '0',
-		5 => '5', 
-		10 => '10', 
-		15 => '15', 
-		20 => '20',
-		30 => '30',
-		45 => '45',
-		60 => '60',
-		90 => '90',
-		120 => '120',
-		180 => '180',
-		240 => '240',
-		300 => '300'
+		5000 => '5', 
+		10000 => '10', 
+		15000 => '15', 
+		20000 => '20',
+		30000 => '30',
+		45000 => '45',
+		60000 => '60',
+		90000 => '90',
+		120000 => '120',
+		180000 => '180',
+		240000 => '240',
+		300000 => '300'
 	],
 ];
 
@@ -149,18 +149,18 @@ $modversion['config'][] = [
 	'default'     => 0,
 	'options'     => [
 		0 => '0',
-		5 => '5', 
-		10 => '10', 
-		15 => '15', 
-		20 => '20',
-		30 => '30',
-		45 => '45',
-		60 => '60',
-		90 => '90',
-		120 => '120',
-		180 => '180',
-		240 => '240',
-		300 => '300'
+		5000 => '5', 
+		10000 => '10', 
+		15000 => '15', 
+		20000 => '20',
+		30000 => '30',
+		45000 => '45',
+		60000 => '60',
+		90000 => '90',
+		120000 => '120',
+		180000 => '180',
+		240000 => '240',
+		300000 => '300'
 	],
 ];
 
@@ -173,18 +173,18 @@ $modversion['config'][] = [
 	'default'     => 0,
 	'options'     => [
 		0 => '0',
-		5 => '5', 
-		10 => '10', 
-		15 => '15', 
-		20 => '20',
-		30 => '30',
-		45 => '45',
-		60 => '60',
-		90 => '90',
-		120 => '120',
-		180 => '180',
-		240 => '240',
-		300 => '300'
+		5000 => '5', 
+		10000 => '10', 
+		15000 => '15', 
+		20000 => '20',
+		30000 => '30',
+		45000 => '45',
+		60000 => '60',
+		90000 => '90',
+		120000 => '120',
+		180000 => '180',
+		240000 => '240',
+		300000 => '300'
 	],
 ];
 
@@ -197,18 +197,18 @@ $modversion['config'][] = [
 	'default'     => 0,
 	'options'     => [
 		0 => '0',
-		5 => '5', 
-		10 => '10', 
-		15 => '15', 
-		20 => '20',
-		30 => '30',
-		45 => '45',
-		60 => '60',
-		90 => '90',
-		120 => '120',
-		180 => '180',
-		240 => '240',
-		300 => '300'
+		5000 => '5', 
+		10000 => '10', 
+		15000 => '15', 
+		20000 => '20',
+		30000 => '30',
+		45000 => '45',
+		60000 => '60',
+		90000 => '90',
+		120000 => '120',
+		180000 => '180',
+		240000 => '240',
+		300000 => '300'
 	],
 ];
 // End auto-revive system blocks
