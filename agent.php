@@ -23,8 +23,11 @@ use Xmf\Request;
 use XoopsModules\Lasius\{
 	tools
 };
-include dirname(dirname(__DIR__)) . '/mainfile.php';
+
+require_once dirname(__DIR__,2) . '/mainfile.php';
+
 require_once XOOPS_ROOT_PATH . '/class/template.php';
+
 include_once XOOPS_ROOT_PATH .'/modules/system/blocks/system_blocks.php';
 
 // Type of block ("onlinenow", "topposters") etc
@@ -35,12 +38,14 @@ $tools = new tools();
 
 switch ($type) {
     case "onlinenow":
-		$tpl = new XoopsTpl();
+		$tpl = new \XoopsTpl();
 		$tpl->caching = 0;
 		$result = $tools->b_system_online_show($name);
 		$tpl->assign('block', $result);	
-		$tpl->display(XOOPS_ROOT_PATH . "/modules/system/templates/blocks/system_block_online.tpl");
+		//$tpl->display(XOOPS_ROOT_PATH . "/modules/system/templates/blocks/system_block_online.tpl");
+		$tpl->display("db:system_block_online.tpl");
         break;
+		
     case "topposters":
         //$moduleHandler = xoops_getHandler('module');
 		//$module  = $moduleHandler->get($mid);
@@ -49,7 +54,7 @@ switch ($type) {
 		$o = $tools->getBlockOptions("b_system_topposters_show");
 		$result = b_system_topposters_show($o);
 		$tpl->assign('block', $result);	
-		$tpl->display(XOOPS_ROOT_PATH . "/modules/system/templates/blocks/system_block_topusers.tpl");
+		$tpl->display("db:system_block_topusers.tpl");
         break;
     case "newmembers":
 		$tpl = new XoopsTpl();
@@ -57,7 +62,7 @@ switch ($type) {
 		$o = $tools->getBlockOptions("b_system_newmembers_show");
 		$result = b_system_newmembers_show($o);
 		$tpl->assign('block', $result);	
-		$tpl->display(XOOPS_ROOT_PATH . "/modules/system/templates/blocks/system_block_newusers.tpl");
+		$tpl->display("db:system_block_newusers.tpl");
         break;
 	case "recentcomments":
 		$tpl = new XoopsTpl();
@@ -65,8 +70,9 @@ switch ($type) {
 		$o = $tools->getBlockOptions("b_system_comments_show");
 		$result = b_system_comments_show($o);
 		$tpl->assign('block', $result);	
-		$tpl->display(XOOPS_ROOT_PATH . "/modules/system/templates/blocks/system_block_comments.tpl");
+		$tpl->display("db:system_block_comments.tpl");
         break;
+		
 }
 
 $GLOBALS['xoopsLogger']->activated = false;
