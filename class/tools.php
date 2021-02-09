@@ -68,7 +68,7 @@ class tools
 	$counter = $GLOBALS['xoopsDB']->getRowsNum($result);
 	if ($counter >= 1) {
 		while ($sqlfetch = $GLOBALS['xoopsDB']->fetchArray($result)) {
-			$n = ($name == "Lasius" OR $name == "htdocs" OR $name == "") ? 1 : $sqlfetch['mid'];
+			$n = ($name == "Lasius" OR $name == "htdocs" OR $name == "" OR $name="index.php") ? 1 : $sqlfetch['mid'];
 		}
 	}
 	return $n;
@@ -127,7 +127,7 @@ class tools
 			$block['online_members'] = $total - $guests;
 			$block['online_guests']  = $guests;
 			$block['lang_more']      = _MORE;
-
+			//print_r($block);
 			return $block;
 		} else {
 			return false;
