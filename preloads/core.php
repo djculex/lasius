@@ -30,49 +30,20 @@ class LasiusCorePreload extends \XoopsPreloadItem
 		/** @var \XoopsModules\Lasius\Helper $helper */
 		$helper = \XoopsModules\Lasius\Helper::getInstance();
 		$tools = new tools();
-		
+		$script = '';
 		$name = basename($_SERVER['REQUEST_URI']);
-		
-		// Include jquery new or framework ?
-		
-		if ($helper->getConfig('updatejquery') > 0) {
-			$GLOBALS['xoTheme']->addScript('', array('type' => 'text/javascript'), "
-                if (typeof jQuery == 'undefined') {
-                    var tag = '<scr' + 'ipt type=\'text/javascript\' src=\'https://code.jquery.com/jquery-latest.min.js\'></scr' + 'ipt>';   
-					console.log ('latest jquery included');
-                    document.write(tag);            	    
-	            };"
-            );
-		} else {
-			$GLOBALS['xoTheme']->addScript('', array('type' => 'text/javascript'), "
-                if (typeof jQuery == 'undefined') {
-                    var tag = '<scr' + 'ipt type=\'text/javascript\' src=\'" . XOOPS_URL . "/browse.php?Frameworks/jquery/jquery.js\'></scr' + 'ipt>'; 
-					console.log ('xoops jquery included');					
-                    document.write(tag);            	    
-	            };"
-            );
-		}
-		
-		// Jquery ui
-		if ($helper->getConfig('updatejqueryui') > 0) {
-			$GLOBALS['xoTheme']->addScript('', array('type' => 'text/javascript'), "
-                if (typeof jQuery == 'undefined') {
-                    var tag = '<scr' + 'ipt type=\'text/javascript\' src=\'" . XOOPS_URL . "/browse.php?Frameworks/jquery/plugins/jquery.ui.js\'></scr' + 'ipt>';    
-					console.log ('jqueryui included');					
-                    document.write(tag);            	    
-	            };"
-            );
-		}
 		
 		// Check prevents multiple loads
 		//$script = "jQuery(document).ready(function(){"."\n";
-		$script  = "var Lasius_systemurl = '" . XOOPS_URL . "/modules/lasius';\n";
+		$script  = "var Lasius_myID;"."\n";;
+		$script  .= "if (typeof Lasius_myID === 'undefined') {"."\n";;
+		$script  .= "var Lasius_systemurl = '" . XOOPS_URL . "/modules/lasius';\n";
 		
+		$script  .= "var Lasius_myID = 1;\n";
 		$script  .= "var Lasius_refurl = '".$name. "';\n";
-		
 		$script  .= "var Lasius_usepopups = ".$helper->getConfig('LASIUSUSEDIALOG').";\n";
 		
-		$script .= "var Lasius_reviveonlineusersblock = " . $helper->getConfig('reviveonlineusersblock').";\n";
+		$script .= "var Lasius_reviveonlineusersblock = " .$helper->getConfig('reviveonlineusersblock').";\n";
 		$script .= "var Lasius_reviveonlineusersblock_title = '" . $tools->getBlockTitle('b_system_online_show') . "';\n";
 		//$script .= "var Lasius_reviveonlineusers_searcharray = ['" ._MEMBERS . "', '"._GUESTS."','"._MORE."'];\n";
 		
@@ -85,9 +56,21 @@ class LasiusCorePreload extends \XoopsPreloadItem
 		
 		$script .= "var Lasius_reviverecentcommentsblock = " . $helper->getConfig('reviverecentcommentsblock') . ";\n";
 		$script .= "var Lasius_reviverecentcommentsblock_title = '" . $tools->getBlockTitle('b_system_comments_show') . "';\n";
-		
+		$script .= "};"."\n";
 		//$script .= "});"."\n";
 		$GLOBALS['xoTheme']->addScript('', '', $script);
+		// Include jquery new or framework ?
+		
+		if ($helper->getConfig('updatejquery') > 0) {
+			$GLOBALS['xoTheme']->addScript("https://code.jquery.com/jquery-latest.min.js");
+		} else {
+			$GLOBALS['xoTheme']->addScript("browse.php?Frameworks/jquery/jquery.js");
+		}
+		
+		// Jquery ui
+		if ($helper->getConfig('updatejqueryui') > 0) {
+			$GLOBALS['xoTheme']->addScript("browse.php?Frameworks/jquery/plugins/jquery.ui.js");
+		}
 		$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/lasius/assets/js/agent.js');
 		$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/lasius/assets/js/lasius.js');
 	}
