@@ -263,6 +263,31 @@ $modversion['config'][] = [
 	],
 ];
 
+// NewBB
+$modversion['config'][] = [
+	'name'        => 'reviverecnewbbpostsblk',
+	'title'       => '_MI_LASIUS_REVIVE_RECENTNEWBBPOSTS_BLOCK',
+	'description' => '_MI_LASIUS_REVIVE_RECENTNEWBBPOSTS_BLOCK_DESC',
+	'formtype'    => 'select',
+	'valuetype'   => 'int',
+	'default'     => 0,
+	'options'     => [
+		0 => '0',
+		5000 => '5', 
+		10000 => '10', 
+		15000 => '15', 
+		20000 => '20',
+		30000 => '30',
+		45000 => '45',
+		60000 => '60',
+		90000 => '90',
+		120000 => '120',
+		180000 => '180',
+		240000 => '240',
+		300000 => '300'
+	],
+];
+
 // end auto-revive publisher blocks
 
 // ------------------- Config ------------------- //

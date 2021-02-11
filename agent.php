@@ -103,6 +103,20 @@ switch ($type) {
 		$tpl->assign('block', $result);	
 		$tpl->display("db:publisher_latest_news.tpl");
         break;
+	
+	case "recentnewbbposts": //newBB module	
+		if (!file_exists(XOOPS_ROOT_PATH ."/modules/newbb/language/".$language."/blocks.php")) {
+			$language = 'english';
+		}
+		require_once XOOPS_ROOT_PATH ."/modules/newbb/language/".$language."/blocks.php";
+		$tpl = new XoopsTpl();
+		$tpl->caching = 0;
+		
+		$o = $tools->getBlockOptions("b_newbb_post_show");
+		$result = $tools->b_newbb_post_show($o);
+		$tpl->assign('block', $result);	
+		$tpl->display("db:newbb_block_post.tpl");		
+        break;
 		
 }
 

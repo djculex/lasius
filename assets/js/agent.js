@@ -4,6 +4,14 @@ jQuery( document ).ready(function() {
 		//console.log("window loaded");
 		//alert(Lasius_refurl);
 		
+		// Setup of variables and names.
+		// xoopsModule config name (cfn) is base
+		// preload core var = cfn;
+		// interval var = interValStart + _ + cfn;
+		// title var = cfn + _ + title;
+		// function name = cfn + Func();
+		
+		
 			// start interval after 10000 ms			
 			var interValStart_onlineusers = setInterval(SystemBlock_checkOnlineUsers, 5000); 
 			var interValStart_topposters = setInterval(SystemBlock_checkTopPosters, 5000); 
@@ -11,7 +19,7 @@ jQuery( document ).ready(function() {
 			var interValStart_checkrecentcomments = setInterval(SystemBlock_checkRecentComments, 5000); 
 			var interValStart_recentpublisherarticles = setInterval(SystemBlock_checkRecentPublisherArticles, 5000); 
 			var interValStart_recentpublishernews = setInterval(SystemBlock_checkRecentPublisherNews, 5000); 
-			
+			var interValStart_reviverecnewbbpostsblk = setInterval(SystemBlock_checkRecentNewBBPosts, 5000); 
 			
 			
 			var mutationObserver = new MutationObserver(function(mutations) {
@@ -38,11 +46,15 @@ jQuery( document ).ready(function() {
 				}
 				
 				if (!interValStart_recentpublisherarticles) {
-					interValStart_recentpublisherarticles = (Lasius_reviverecentpublisherarticlesblock > 0) ? setInterval(SystemBlock_checkRecentPublisherArticles, (Lasius_reviverecentpublisherarticlesblockblock * 1000)) : interValStart_recentpublisherarticles = undefined; 
+					interValStart_recentpublisherarticles = (Lasius_reviverecentpub_art_block > 0) ? setInterval(SystemBlock_checkRecentPublisherArticles, (Lasius_reviverecentpub_art_block * 1000)) : interValStart_recentpublisherarticles = undefined; 
 				}
 				
 				if (!interValStart_recentpublishernews) {
-					interValStart_recentpublishernews = (Lasius_reviverecentpublishernewsblock > 0) ? setInterval(SystemBlock_checkRecentPublisherNews, (Lasius_reviverecentpublishernewsblock * 1000)) : interValStart_recentpublishernews = undefined; 
+					interValStart_recentpublishernews = (Lasius_reviverecentpubnewsblock > 0) ? setInterval(SystemBlock_checkRecentPublisherNews, (Lasius_reviverecentpubnewsblock * 1000)) : interValStart_recentpublishernews = undefined; 
+				}
+				
+				if (!interValStart_reviverecnewbbpostsblk) {
+					interValStart_reviverecnewbbpostsblk = (Lasius_reviverecentnewbbpostsblock > 0) ? setInterval(SystemBlock_checkRecentPublisherNews, (Lasius_reviverecentnewbbpostsblock * 1000)) : interValStart_reviverecnewbbpostsblk = undefined; 
 				}
 			});
 
@@ -132,15 +144,15 @@ jQuery( document ).ready(function() {
 			// Check recent articles.
 			function SystemBlock_checkRecentPublisherArticles() {
 					this.interValStart_recentpublisherarticles = undefined; //reset interval	
-					if (Lasius_reviverecentpublisherarticlesblock > 0) {
+					if (Lasius_reviverecentpub_art_block > 0) {
 						
-						jQuery('div:contains("' + Lasius_reviverecentpublisherarticlesblock_title + '")').next(".blockContent").load(Lasius_systemurl + "/agent.php?type=recentpublisherarticles", function() {
+						jQuery('div:contains("' + Lasius_reviverecentpub_art_block_title + '")').next(".blockContent").load(Lasius_systemurl + "/agent.php?type=recentpublisherarticles", function() {
 						//console.log('replace  topposters block.');
 						//console.log(Lasius_systemurl + "/agent.php?type=topposters");
 						}).fadeIn('slow');
 						
-						jQuery('aside h4.block-title:contains("' + Lasius_reviverecentpublisherarticlesblock_title + '")').parent("aside").load(Lasius_systemurl + "/agent.php?type=recentpublisherarticles", function() {
-							jQuery(this).prepend('<h4 class="block-title">' + Lasius_reviverecentpublisherarticlesblock_title + '</h4>');
+						jQuery('aside h4.block-title:contains("' + Lasius_reviverecentpub_art_block_title + '")').parent("aside").load(Lasius_systemurl + "/agent.php?type=recentpublisherarticles", function() {
+							jQuery(this).prepend('<h4 class="block-title">' + Lasius_reviverecentpub_art_block_title + '</h4>');
 								//console.log('replace  topposters block.');
 								//console.log(Lasius_systemurl + "/agent.php?type=topposters");
 						}).fadeIn('slow');
@@ -150,20 +162,36 @@ jQuery( document ).ready(function() {
 			// Check recent articles.
 			function SystemBlock_checkRecentPublisherNews() {
 					this.interValStart_recentpublishernews = undefined; //reset interval	
-					if (Lasius_reviverecentpublishernewsblock > 0) {
-						jQuery('div:contains("' + Lasius_reviverecentpublishernewsblock_title + '")').next(".blockContent").load(Lasius_systemurl + "/agent.php?type=recentpublishernews", function() {
+					if (Lasius_reviverecentpubnewsblock > 0) {
+						jQuery('div:contains("' + Lasius_reviverecentpubnewsblock_title + '")').next(".blockContent").load(Lasius_systemurl + "/agent.php?type=recentpublishernews", function() {
 						console.log('replace  recent pub newe.');
 						console.log(Lasius_systemurl + "/agent.php?type=recentpublishernews");
 						}).fadeIn('slow');
 						
-						jQuery('aside h4.block-title:contains("' + Lasius_reviverecentpublishernewsblock_title + '")').parent("aside").load(Lasius_systemurl + "/agent.php?type=recentpublishernews", function() {
-							jQuery(this).prepend('<h4 class="block-title">' + Lasius_reviverecentpublishernewsblock_title + '</h4>');
+						jQuery('aside h4.block-title:contains("' + Lasius_reviverecentpubnewsblock_title + '")').parent("aside").load(Lasius_systemurl + "/agent.php?type=recentpublishernews", function() {
+							jQuery(this).prepend('<h4 class="block-title">' + Lasius_reviverecentpubnewsblock_title + '</h4>');
 								//console.log('replace  topposters block.');
 								//console.log(Lasius_systemurl + "/agent.php?type=topposters");
 						}).fadeIn('slow');
 					}			
 			}
 			
+			// Check recent articles.
+			function SystemBlock_checkRecentNewBBPosts() {
+					this.interValStart_recentpublishernews = undefined; //reset interval	
+					if (Lasius_reviverecentnewbbpostsblock > 0) {
+						jQuery('div:contains("' + Lasius_reviverecentnewbbpostsblock_title + '")').next(".blockContent").load(Lasius_systemurl + "/agent.php?type=recentnewbbposts", function() {
+						console.log('replace  recent pub newe.');
+						console.log(Lasius_systemurl + "/agent.php?type=recentnewbbposts");
+						}).fadeIn('slow');
+						
+						jQuery('aside h4.block-title:contains("' + Lasius_reviverecentnewbbpostsblock_title + '")').parent("aside").load(Lasius_systemurl + "/agent.php?type=recentnewbbposts", function() {
+							jQuery(this).prepend('<h4 class="block-title">' + Lasius_reviverecentnewbbpostsblock_title + '</h4>');
+								//console.log('replace  topposters block.');
+								//console.log(Lasius_systemurl + "/agent.php?type=topposters");
+						}).fadeIn('slow');
+					}			
+			}
 			
 			
 	});

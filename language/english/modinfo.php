@@ -89,4 +89,7 @@ define('_MI_LASIUS_REVIVE_RECENTPUBLISHERARTICLES_BLOCK_DESC', 'Automaticly refr
 define('_MI_LASIUS_REVIVE_RECENTPUBLISHERNEWS_BLOCK', 'Auto refresh \'Recent Puclisher News\' block ?');
 define('_MI_LASIUS_REVIVE_RECENTPUBLISHERNEWS_BLOCK_DESC', 'Automaticly refresh the publisher News block \'Recent Publisher News\' block every x seconds');
 
+// NEWBB
+define('_MI_LASIUS_REVIVE_RECENTNEWBBPOSTS_BLOCK', 'Auto refresh \'Recent NewBB posts\' block ?');
+define('_MI_LASIUS_REVIVE_RECENTNEWBBPOSTS_BLOCK_DESC', 'Automaticly refresh the publisher News block \'Recent NewBB posts\' block every x seconds');
 // ---------------- End ----------------

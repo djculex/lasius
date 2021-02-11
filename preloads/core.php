@@ -27,11 +27,14 @@ class LasiusCorePreload extends \XoopsPreloadItem
 
     public static function eventCoreHeaderAddmeta()
     {
+		global $xoopsConfig;
 		/** @var \XoopsModules\Lasius\Helper $helper */
 		$helper = \XoopsModules\Lasius\Helper::getInstance();
 		$tools = new tools();
 		$script = '';
 		$name = basename($_SERVER['REQUEST_URI']);
+		// language files
+		$language = $xoopsConfig['language'];
 		
 		// Check prevents multiple loads
 		//$script = "jQuery(document).ready(function(){"."\n";
@@ -56,11 +59,16 @@ class LasiusCorePreload extends \XoopsPreloadItem
 		$script .= "var Lasius_reviverecentcommentsblock = " . $helper->getConfig('reviverecentcommentsblock') . ";\n";
 		$script .= "var Lasius_reviverecentcommentsblock_title = '" . $tools->getBlockTitle('b_system_comments_show') . "';\n";
 		
-		$script .= "var Lasius_reviverecentpublisherarticlesblock = " . $helper->getConfig('reviverecentpub_art_block') . ";\n";
-		$script .= "var Lasius_reviverecentpublisherarticlesblock_title = '" . $tools->getBlockTitle('publisher_items_recent_show') . "';\n";
+		$script .= "var Lasius_reviverecentpub_art_block = " . $helper->getConfig('reviverecentpub_art_block') . ";\n";
+		$script .= "var Lasius_reviverecentpub_art_block_title = '" . $tools->getBlockTitle('publisher_items_recent_show') . "';\n";
 		
-		$script .= "var Lasius_reviverecentpublishernewsblock = " . $helper->getConfig('reviverecentpubnewsblock') . ";\n";
-		$script .= "var Lasius_reviverecentpublishernewsblock_title = '" . $tools->getBlockTitle('publisher_latest_news_show') . "';\n";
+		$script .= "var Lasius_reviverecentpubnewsblock = " . $helper->getConfig('reviverecentpubnewsblock') . ";\n";
+		$script .= "var Lasius_reviverecentpubnewsblock_title = '" . $tools->getBlockTitle('publisher_latest_news_show') . "';\n";
+		
+		$script .= "var Lasius_reviverecentnewbbpostsblock = " . $helper->getConfig('reviverecnewbbpostsblk') . ";\n";
+		$script .= "var Lasius_reviverecentnewbbpostsblock_title = '" . $tools->getBlockTitle('b_newbb_post_show') . "';\n";
+		
+		
 		
 		$script .= "};"."\n";
 		//$script .= "});"."\n";
