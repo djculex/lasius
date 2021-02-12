@@ -40,101 +40,101 @@ $language = $xoopsConfig['language'];
 
 
 switch ($type) {
-    case "onlinenow":
+    case 'onlinenow':
 		$tpl = new \XoopsTpl();
 		$tpl->caching = 0;
 		$result = $tools->b_system_online_show($name);
 		$tpl->assign('block', $result);	
 		//$tpl->display(XOOPS_ROOT_PATH . "/modules/system/templates/blocks/system_block_online.tpl");
-		$tpl->display("db:system_block_online.tpl");
+		$tpl->display('db:system_block_online.tpl');
         break;
 		
-    case "topposters":
+    case 'topposters':
         //$moduleHandler = xoops_getHandler('module');
 		//$module  = $moduleHandler->get($mid);
 		$tpl = new XoopsTpl();
 		$tpl->caching = 0;
-		$o = $tools->getBlockOptions("b_system_topposters_show");
+		$o = $tools->getBlockOptions('b_system_topposters_show');
 		$result = b_system_topposters_show($o);
 		$tpl->assign('block', $result);	
-		$tpl->display("db:system_block_topusers.tpl");
+		$tpl->display('db:system_block_topusers.tpl');
         break;
-    case "newmembers":
+    case 'newmembers':
 		$tpl = new XoopsTpl();
 		$tpl->caching = 0;
-		$o = $tools->getBlockOptions("b_system_newmembers_show");
+		$o = $tools->getBlockOptions('b_system_newmembers_show');
 		$result = b_system_newmembers_show($o);
 		$tpl->assign('block', $result);	
-		$tpl->display("db:system_block_newusers.tpl");
+		$tpl->display('db:system_block_newusers.tpl');
         break;
-	case "recentcomments":
+	case 'recentcomments':
 		$tpl = new XoopsTpl();
 		$tpl->caching = 0;
-		$o = $tools->getBlockOptions("b_system_comments_show");
+		$o = $tools->getBlockOptions('b_system_comments_show');
 		$result = b_system_comments_show($o);
 		$tpl->assign('block', $result);	
-		$tpl->display("db:system_block_comments.tpl");
+		$tpl->display('db:system_block_comments.tpl');
         break;
 		
-	case "recentpublisherarticles": //publisher module
-		if (!file_exists(XOOPS_ROOT_PATH ."/modules/publisher/language/".$language."/blocks.php")) {
+	case 'recentpublisherarticles': //publisher module
+		if (!file_exists(XOOPS_ROOT_PATH . '/modules/publisher/language/' . $language . '/blocks.php')) {
 			$language = 'english';
 		}
 		require_once XOOPS_ROOT_PATH .'/modules/publisher/blocks/items_recent.php';
-		require_once XOOPS_ROOT_PATH ."/modules/publisher/language/".$language."/blocks.php";
+		require_once XOOPS_ROOT_PATH . '/modules/publisher/language/' . $language . '/blocks.php';
 		$tpl = new XoopsTpl();
 		$tpl->caching = 0;
-		$o = $tools->getBlockOptions("publisher_items_recent_show");
+		$o = $tools->getBlockOptions('publisher_items_recent_show');
 		$result = publisher_items_recent_show($o);
 		$tpl->assign('block', $result);	
-		$tpl->display("db:publisher_items_recent.tpl");
+		$tpl->display('db:publisher_items_recent.tpl');
         break;
 		
-	case "recentpublishernews": //publisher module
-		if (!file_exists(XOOPS_ROOT_PATH ."/modules/publisher/language/".$language."/blocks.php")) {
+	case 'recentpublishernews': //publisher module
+		if (!file_exists(XOOPS_ROOT_PATH . '/modules/publisher/language/' . $language . '/blocks.php')) {
 			$language = 'english';
 		}
 		require_once XOOPS_ROOT_PATH .'/modules/publisher/blocks/latest_news.php';
-		require_once XOOPS_ROOT_PATH ."/modules/publisher/language/".$language."/blocks.php";
+		require_once XOOPS_ROOT_PATH . '/modules/publisher/language/' . $language . '/blocks.php';
 		$tpl = new XoopsTpl();
 		$tpl->caching = 0;
-		$o = $tools->getBlockOptions("publisher_latest_news_show");
+		$o = $tools->getBlockOptions('publisher_latest_news_show');
 		$result = publisher_latest_news_show($o);
 		$tpl->assign('block', $result);	
-		$tpl->display("db:publisher_latest_news.tpl");
+		$tpl->display('db:publisher_latest_news.tpl');
         break;
 		
 	
-	case "recentnewbbposts": //newBB module	
-		if (!file_exists(XOOPS_ROOT_PATH ."/modules/newbb/language/".$language."/blocks.php")) {
+	case 'recentnewbbposts': //newBB module
+		if (!file_exists(XOOPS_ROOT_PATH . '/modules/newbb/language/' . $language . '/blocks.php')) {
 			$language = 'english';
 		}
-		require_once XOOPS_ROOT_PATH ."/modules/newbb/language/".$language."/blocks.php";
+		require_once XOOPS_ROOT_PATH . '/modules/newbb/language/' . $language . '/blocks.php';
 		$tpl = new XoopsTpl();
 		$tpl->caching = 0;
 		
-		$o = $tools->getBlockOptions("b_newbb_post_show");
+		$o = $tools->getBlockOptions('b_newbb_post_show');
 		$result = $tools->b_newbb_post_show($o);
 		$tpl->assign('block', $result);	
-		$tpl->display("db:newbb_block_post.tpl");		
+		$tpl->display('db:newbb_block_post.tpl');
         break;
 	
 	// extCal block(s)
-	case "extcalminical": //newBB module	
-		if (!file_exists(XOOPS_ROOT_PATH ."/modules/extcal/language/".$language."/blocks.php")) {
+	case 'extcalminical': //newBB module
+		if (!file_exists(XOOPS_ROOT_PATH . '/modules/extcal/language/' . $language . '/blocks.php')) {
 			$language = 'english';
 		}
 		require_once XOOPS_ROOT_PATH .'/modules/extcal/blocks/minical.php';
-		require_once XOOPS_ROOT_PATH ."/modules/extcal/language/".$language."/blocks.php";
+		require_once XOOPS_ROOT_PATH . '/modules/extcal/language/' . $language . '/blocks.php';
 		$tpl = new XoopsTpl();
 		$tpl->caching = 0;
 		
-		$o = $tools->getBlockOptions("bExtcalMinicalShow");
+		$o = $tools->getBlockOptions('bExtcalMinicalShow');
 		$o[10] = ''; // remove hourlog clock from extcal. 
 					 // If not screen wil jitter
 		$result = bExtcalMinicalShow($o);
 		$tpl->assign('block', $result);	
-		$tpl->display("db:extcal_block_minical.tpl");		
+		$tpl->display('db:extcal_block_minical.tpl');
         break;
 		
 }

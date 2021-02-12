@@ -46,29 +46,29 @@ class Tools
 	
 	
 	public function moduleNameById ($dir) {
-		$n = "";
-		$s = ($dir == "htdocs") ? "system" : $dir;
+		$n = '';
+		$s = ($dir == 'htdocs') ? 'system' : $dir;
 		//SELECT name FROM `xoops2511_modules` WHERE `mid` = 10
 		$query  = 'SELECT name FROM ' . $GLOBALS['xoopsDB']->prefix('modules') . " WHERE dirname = '" . addslashes($s) . "' ORDER BY name ASC ";
 		$result = $GLOBALS['xoopsDB']->queryF($query);
 		$counter = $GLOBALS['xoopsDB']->getRowsNum($result);
         if ($counter >= 1) {
             while ($sqlfetch = $GLOBALS['xoopsDB']->fetchArray($result)) {
-                $n = ($sqlfetch['name'][0] != "Lasius") ? $sqlfetch['name'] : "System";
+                $n = ($sqlfetch['name'][0] != 'Lasius') ? $sqlfetch['name'] : 'System';
             }
         }
 		return $n;
 	}
 	
 	public function midByName ($name) {
-	$n = "";
+	$n = '';
 	//SELECT name FROM `xoops2511_modules` WHERE `mid` = 10
 	$query  = 'SELECT mid FROM ' . $GLOBALS['xoopsDB']->prefix('modules') . " WHERE name = '" . addslashes($name) . "' ORDER BY mid ASC ";
 	$result = $GLOBALS['xoopsDB']->queryF($query);
 	$counter = $GLOBALS['xoopsDB']->getRowsNum($result);
 	if ($counter >= 1) {
 		while ($sqlfetch = $GLOBALS['xoopsDB']->fetchArray($result)) {
-			$n = ($name == "Lasius" OR $name == "htdocs" OR $name == "" OR $name="index.php") ? 1 : $sqlfetch['mid'];
+			$n = ($name == 'Lasius' OR $name == 'htdocs' OR $name == '' OR $name= 'index.php') ? 1 : $sqlfetch['mid'];
 		}
 	}
 	return $n;
