@@ -1,10 +1,10 @@
  **Lasius** module for [XOOPS CMS](https://xoops.org) to keep your blocks alive, submits-on-page and more using ajax. At first 
 
 ### User-side Key Features:
-* None. This module has only settings in admin. 
+* None. This module has only settings in Admin. 
 
 ### Admin-side Key Features:
-* Admin selects wich blocks to auto-update on wich interval. 0 is no revive.
+* Admin selects which blocks to auto-update on which interval. 0 is no revive.
 
 Please visit us on https://xoops.org
 
