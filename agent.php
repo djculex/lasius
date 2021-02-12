@@ -18,7 +18,7 @@
  */
 
 //use Xoops\Core\Kernel\Criteria;
-use Xoops\Core\FixedGroups;
+//use Xoops\Core\FixedGroups;
 use Xmf\Request;
 use XoopsModules\Lasius\{
 	Tools
