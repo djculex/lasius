@@ -38,9 +38,9 @@ class LasiusCorePreload extends \XoopsPreloadItem
 		
 		// Check prevents multiple loads
 		//$script = "jQuery(document).ready(function(){"."\n";
-		$script  = 'var Lasius_myID;' . "\n";;
-		$script  .= "if (typeof Lasius_myID === 'undefined') {"."\n";;
-		$script  .= "var Lasius_systemurl = '" . XOOPS_URL . "/modules/lasius';\n";
+		$script  = 'var Lasius_myID;' . "\n";
+        $script  .= "if (typeof Lasius_myID === 'undefined') {"."\n";
+        $script  .= "var Lasius_systemurl = '" . XOOPS_URL . "/modules/lasius';\n";
 		
 		$script  .= "var Lasius_myID = 1;\n";
 		$script  .= "var Lasius_refurl = '".$name. "';\n";
