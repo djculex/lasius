@@ -50,7 +50,6 @@ $modversion = [
 	'min_db'              => ['mysql' => '5.6', 'mysqli' => '5.6'],
     'image'               => 'assets/images/logoModule.png',
 	'dirname'             => basename(__DIR__),
-	'dirmoduleadmin'      => 'Frameworks/moduleclasses/moduleadmin',
 	'sysicons16'          => '../../Frameworks/moduleclasses/icons/16',
 	'sysicons32'          => '../../Frameworks/moduleclasses/icons/32',
 	'modicons16'          => 'assets/icons/16',
