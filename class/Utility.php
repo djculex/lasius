@@ -28,8 +28,7 @@ namespace XoopsModules\Lasius;
 
 
 use XoopsModules\Lasius\{
-    Common,
-    Helper
+    Common
 };
 
 
