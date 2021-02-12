@@ -12,7 +12,7 @@ namespace XoopsModules\Lasius\Common;
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-use \XoopsModules\Lasius\Common;
+use XoopsModules\Lasius\Common;
 
 /**
  * Class Migrate synchronize existing tables with target schema
