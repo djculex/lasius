@@ -17,7 +17,7 @@ class Tools
 	}
 	
 	public function getBlockTitle($showfunc){
-		$data = array();
+		$data = [];
 		//SELECT title FROM `xoops2511_newblocks` WHERE `show_func` = "b_system_online_show"
 		$query  = 'SELECT title FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE show_func = '" . addslashes($showfunc) . "' ORDER BY title ASC ";
 		$result = $GLOBALS['xoopsDB']->queryF($query);
@@ -31,7 +31,7 @@ class Tools
 	}
 	
 	public function getBlockOptions($showfunc){
-		$data = array();
+		$data = [];
 		//SELECT title FROM `xoops2511_newblocks` WHERE `show_func` = "b_system_online_show"
 		$query  = 'SELECT options FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE show_func = '" . addslashes($showfunc) . "' ORDER BY options ASC ";
 		$result = $GLOBALS['xoopsDB']->queryF($query);
@@ -106,7 +106,7 @@ class Tools
 			$mbid = $this->midByName ($title);
 			$count = $this->CountMidByName($mbid);
 			$total   = count($onlines);
-			$block   = array();
+			$block   = [];
 			$guests  = 0;
 			$members = '';
 			for ($i = 0; $i < $total; ++$i) {
