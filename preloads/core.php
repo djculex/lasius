@@ -16,7 +16,7 @@
  */
 \defined('XOOPS_ROOT_PATH') || die('Restricted access.');
 use XoopsModules\Lasius\{
-	tools
+	Tools
 };
 use XoopsModules\Lasius\Constants;
 /**
@@ -30,7 +30,7 @@ class LasiusCorePreload extends \XoopsPreloadItem
 		global $xoopsConfig;
 		/** @var \XoopsModules\Lasius\Helper $helper */
 		$helper = \XoopsModules\Lasius\Helper::getInstance();
-		$tools = new tools();
+		$tools = new Tools();
 		$script = '';
 		$name = basename($_SERVER['REQUEST_URI']);
 		// language files

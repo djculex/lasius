@@ -4,7 +4,7 @@ namespace XoopsModules\Lasius;
 use XoopsModules\Lasius;
 use XoopsModules\Lasius\Constants;
 
-class tools
+class Tools
 {
 	/**
 	* constructor

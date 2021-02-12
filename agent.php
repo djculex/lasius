@@ -21,7 +21,7 @@
 use Xoops\Core\FixedGroups;
 use Xmf\Request;
 use XoopsModules\Lasius\{
-	tools
+	Tools
 };
 
 require_once dirname(__DIR__,2) . '/mainfile.php';
@@ -34,7 +34,7 @@ include_once XOOPS_ROOT_PATH .'/modules/system/blocks/system_blocks.php';
 $type = Request::getString('type', '', 'GET');
 // Name of module user is watching
 $name = Request::getString('name', '', 'GET');
-$tools = new tools();
+$tools = new Tools();
 // language files
 $language = $xoopsConfig['language'];
 
