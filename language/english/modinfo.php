@@ -92,4 +92,8 @@ define('_MI_LASIUS_REVIVE_RECENTPUBLISHERNEWS_BLOCK_DESC', 'Automaticly refresh 
 // NEWBB
 define('_MI_LASIUS_REVIVE_RECENTNEWBBPOSTS_BLOCK', 'Auto refresh \'Recent NewBB posts\' block ?');
 define('_MI_LASIUS_REVIVE_RECENTNEWBBPOSTS_BLOCK_DESC', 'Automaticly refresh the publisher News block \'Recent NewBB posts\' block every x seconds');
+
+//ExtCal
+define('_MI_LASIUS_REVIVE_EXTCALMINICAL_BLOCK', 'Auto refresh \'ExtCal mini Calendar\' block ?');
+define('_MI_LASIUS_REVIVE_EXTCALMINICAL_BLOCK_DESC', 'Automaticly refresh the publisher News block \'ExtCal mini Calendar\' block every x seconds');
 // ---------------- End ----------------

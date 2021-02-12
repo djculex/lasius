@@ -20,7 +20,7 @@ jQuery( document ).ready(function() {
 			var interValStart_recentpublisherarticles = setInterval(SystemBlock_checkRecentPublisherArticles, 5000); 
 			var interValStart_recentpublishernews = setInterval(SystemBlock_checkRecentPublisherNews, 5000); 
 			var interValStart_reviverecnewbbpostsblk = setInterval(SystemBlock_checkRecentNewBBPosts, 5000); 
-			
+			var interValStart_reviverecentextcalminicalblocksblk = setInterval(SystemBlock_checkRecentExtCalMiniCal, 5000); 
 			
 			var mutationObserver = new MutationObserver(function(mutations) {
 			  mutations.forEach(function(mutation) {
@@ -55,6 +55,10 @@ jQuery( document ).ready(function() {
 				
 				if (!interValStart_reviverecnewbbpostsblk) {
 					interValStart_reviverecnewbbpostsblk = (Lasius_reviverecentnewbbpostsblock > 0) ? setInterval(SystemBlock_checkRecentPublisherNews, (Lasius_reviverecentnewbbpostsblock * 1000)) : interValStart_reviverecnewbbpostsblk = undefined; 
+				}
+				
+				if (!interValStart_reviverecentextcalminicalblocksblk) {
+					interValStart_reviverecentextcalminicalblocksblk = (Lasius_reviverecentextcalminicalblock > 0) ? setInterval(SystemBlock_checkRecentPublisherNews, (Lasius_reviverecentextcalminicalblock * 1000)) : interValStart_reviverecentextcalminicalblocksblk = undefined; 
 				}
 			});
 
@@ -193,6 +197,22 @@ jQuery( document ).ready(function() {
 					}			
 			}
 			
+			// Check recent articles.
+			function SystemBlock_checkRecentExtCalMiniCal() {
+					this.interValStart_reviverecentextcalminicalblocksblk = undefined; //reset interval	
+					if (Lasius_reviverecentextcalminicalblock > 0) {
+						jQuery('div:contains("' + Lasius_reviverecentextcalminicalblock_title + '")').next(".blockContent").load(Lasius_systemurl + "/agent.php?type=extcalminical", function() {
+						console.log('replace  recent pub newe.');
+						console.log(Lasius_systemurl + "/agent.php?type=extcalminical");
+						}).fadeIn(1000);
+						
+						jQuery('aside h4.block-title:contains("' + Lasius_reviverecentextcalminicalblock_title + '")').parent("aside").load(Lasius_systemurl + "/agent.php?type=extcalminical", function() {
+							jQuery(this).prepend('<h4 class="block-title">' + Lasius_reviverecentextcalminicalblock_title + '</h4>');
+								//console.log('replace  topposters block.');
+								//console.log(Lasius_systemurl + "/agent.php?type=topposters");
+						}).fadeIn(1000);
+					}			
+			}
 			
 	});
 });

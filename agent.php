@@ -103,6 +103,7 @@ switch ($type) {
 		$tpl->assign('block', $result);	
 		$tpl->display("db:publisher_latest_news.tpl");
         break;
+		
 	
 	case "recentnewbbposts": //newBB module	
 		if (!file_exists(XOOPS_ROOT_PATH ."/modules/newbb/language/".$language."/blocks.php")) {
@@ -116,6 +117,24 @@ switch ($type) {
 		$result = $tools->b_newbb_post_show($o);
 		$tpl->assign('block', $result);	
 		$tpl->display("db:newbb_block_post.tpl");		
+        break;
+	
+	// extCal block(s)
+	case "extcalminical": //newBB module	
+		if (!file_exists(XOOPS_ROOT_PATH ."/modules/extcal/language/".$language."/blocks.php")) {
+			$language = 'english';
+		}
+		require_once XOOPS_ROOT_PATH .'/modules/extcal/blocks/minical.php';
+		require_once XOOPS_ROOT_PATH ."/modules/extcal/language/".$language."/blocks.php";
+		$tpl = new XoopsTpl();
+		$tpl->caching = 0;
+		
+		$o = $tools->getBlockOptions("bExtcalMinicalShow");
+		$o[10] = ''; // remove hourlog clock from extcal. 
+					 // If not screen wil jitter
+		$result = bExtcalMinicalShow($o);
+		$tpl->assign('block', $result);	
+		$tpl->display("db:extcal_block_minical.tpl");		
         break;
 		
 }

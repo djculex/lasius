@@ -68,7 +68,8 @@ class LasiusCorePreload extends \XoopsPreloadItem
 		$script .= "var Lasius_reviverecentnewbbpostsblock = " . $helper->getConfig('reviverecnewbbpostsblk') . ";\n";
 		$script .= "var Lasius_reviverecentnewbbpostsblock_title = '" . $tools->getBlockTitle('b_newbb_post_show') . "';\n";
 		
-		
+		$script .= "var Lasius_reviverecentextcalminicalblock = " . $helper->getConfig('reviveextcalminiblk') . ";\n";
+		$script .= "var Lasius_reviverecentextcalminicalblock_title = '" . $tools->getBlockTitle('bExtcalMinicalShow') . "';\n";
 		
 		$script .= "};"."\n";
 		//$script .= "});"."\n";
