@@ -2,7 +2,7 @@
 use XoopsModules\Lasius;
 
 include __DIR__ . '/preloads/autoloader.php';
-require_once dirname(dirname(__DIR__)) . '/mainfile.php';
+require_once dirname(__DIR__, 2) . '/mainfile.php';
 
 $moduleDirName = basename(__DIR__);
 $modulePath    = XOOPS_ROOT_PATH . '/modules/' . $moduleDirName;

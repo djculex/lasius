@@ -68,6 +68,7 @@ function update_lasius_v10($module)
         $tplids[] = $tplid;
     }
     if (\count($tplids) > 0) {
+        /** @var \XoopsTplfileHandler $tplfileHandler */
         $tplfileHandler  = \xoops_getHandler('tplfile');
         $duplicate_files = $tplfileHandler->getObjects(new \Criteria('tpl_id', '(' . \implode(',', $tplids) . ')', 'IN'));
 

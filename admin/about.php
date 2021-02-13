@@ -22,9 +22,13 @@ declare(strict_types=1);
  * @min_xoops      2.5.9
  * @author         Culex - Email:<culex@culex.dk> - Website:<http://culex.dk>
  */
+
+use Xmf\Module\Admin;
+/** @var Admin $adminObject */
+
 require __DIR__ . '/header.php';
 $templateMain = 'lasius_admin_about.tpl';
 $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('about.php'));
-$adminObject->setPaypal('6KJ7RW5DR3VTJ');
-$GLOBALS['xoopsTpl']->assign('about', $adminObject->renderAbout(false));
+$adminObject::setPaypal('xoopsfoundation@gmail.com');
+$GLOBALS['xoopsTpl']->assign('about', $adminObject->displayAbout(false));
 require __DIR__ . '/footer.php';

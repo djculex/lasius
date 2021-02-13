@@ -23,16 +23,23 @@ declare(strict_types=1);
  * @author         Culex - Email:<culex@culex.dk> - Website:<http://culex.dk>
  */
  
+use Xmf\Module\Admin;
 use XoopsModules\Lasius\{
     Helper
 };
+/** @var Admin $adminObject */
+/** @var Helper $helper */
 
-include \dirname(\dirname(\dirname(__DIR__))) . '/include/cp_header.php';
+//require dirname(__DIR__) . '/preloads/autoloader.php';
+
+include dirname(__DIR__, 3) . '/include/cp_header.php';
 include_once \dirname(__DIR__) . '/include/common.php';
 
-$sysPathIcon16   = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons16');
-$sysPathIcon32   = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons32');
-$pathModuleAdmin = $GLOBALS['xoopsModule']->getInfo('dirmoduleadmin');
+$helper = Helper::getInstance();
+
+$sysPathIcon16   = $helper->getModule()->getInfo('sysicons16');
+$sysPathIcon32   = $helper->getModule()->getInfo('sysicons32');
+
 $modPathIcon16   = LASIUS_URL . '/' . $GLOBALS['xoopsModule']->getInfo('modicons16') . '/';
 $modPathIcon32   = LASIUS_URL . '/' . $GLOBALS['xoopsModule']->getInfo('modicons32') . '/';
 $myts = MyTextSanitizer::getInstance();
@@ -44,15 +51,8 @@ if (!isset($xoopsTpl) || !\is_object($xoopsTpl)) {
 }
 
 // Load languages
-\xoops_loadLanguage('admin');
-\xoops_loadLanguage('modinfo');
-
-// Local admin menu class
-if (\file_exists($GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php'))) {
-	include_once $GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php');
-} else {
-	\redirect_header('../../../admin.php', 5, _AM_MODULEADMIN_MISSING);
-}
+$helper->loadLanguage('admin');
+$helper->loadLanguage('modinfo');
 
 xoops_cp_header();
 
@@ -62,5 +62,5 @@ $GLOBALS['xoopsTpl']->assign('sysPathIcon32', $sysPathIcon32);
 $GLOBALS['xoopsTpl']->assign('modPathIcon16', $modPathIcon16);
 $GLOBALS['xoopsTpl']->assign('modPathIcon32', $modPathIcon32);
 
-$adminObject = \Xmf\Module\Admin::getInstance();
+$adminObject = Admin::getInstance();
 $style = LASIUS_URL . '/assets/css/admin/style.css';

@@ -23,24 +23,32 @@ declare(strict_types=1);
  * @author         Culex - Email:<culex@culex.dk> - Website:<http://culex.dk>
  */
 
-$dirname       = \basename(\dirname(__DIR__));
-$moduleHandler = \xoops_getHandler('module');
-$xoopsModule   = XoopsModule::getByDirname($dirname);
-$moduleInfo    = $moduleHandler->get($xoopsModule->getVar('mid'));
-$sysPathIcon32 = $moduleInfo->getInfo('sysicons32');
+use Xmf\Module\Admin;
+use XoopsModules\Lasius\{Helper
+};
+
+/** @var Helper $helper */
+
+include dirname(__DIR__) . '/preloads/autoloader.php';
+
+$moduleDirName      = basename(dirname(__DIR__));
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+$helper             = Helper::getInstance();
+
+$sysPathIcon32 = Admin::menuIconPath('');
 
 $adminmenu[] = [
-	'title' => _MI_LASIUS_ADMENU1,
-	'link' => 'admin/index.php',
-	'icon' => $sysPathIcon32.'/dashboard.png',
+    'title' => _MI_LASIUS_ADMENU1,
+    'link'  => 'admin/index.php',
+    'icon'  => $sysPathIcon32 . '/dashboard.png',
 ];
 $adminmenu[] = [
-	'title' => _MI_LASIUS_ADMENU2,
-	'link' => 'admin/feedback.php',
-	'icon' => $sysPathIcon32.'/mail_foward.png',
+    'title' => _MI_LASIUS_ADMENU2,
+    'link'  => 'admin/feedback.php',
+    'icon'  => $sysPathIcon32 . '/mail_foward.png',
 ];
 $adminmenu[] = [
-	'title' => _MI_LASIUS_ABOUT,
-	'link' => 'admin/about.php',
-	'icon' => $sysPathIcon32.'/about.png',
+    'title' => _MI_LASIUS_ABOUT,
+    'link'  => 'admin/about.php',
+    'icon'  => $sysPathIcon32 . '/about.png',
 ];
