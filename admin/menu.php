@@ -48,7 +48,12 @@ $adminmenu[] = [
     'icon'  => $sysPathIcon32 . '/mail_foward.png',
 ];
 $adminmenu[] = [
-    'title' => _MI_LASIUS_ABOUT,
-    'link'  => 'admin/about.php',
-    'icon'  => $sysPathIcon32 . '/about.png',
+	'title' => _MI_LASIUS_ADMENU3,
+	'link' => 'admin/blocks.php',
+	'icon' => $sysPathIcon32.'/block.png',
+];
+$adminmenu[] = [
+	'title' => _MI_LASIUS_ABOUT,
+	'link' => 'admin/about.php',
+	'icon' => $sysPathIcon32.'/about.png',
 ];
