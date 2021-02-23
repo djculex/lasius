@@ -171,3 +171,40 @@ function lasius_Filter($url, $type = '') {
     $url = ($url == '') ? $type : strtolower(	rim($url, '-'));
     return $url;
 }
+
+/**
+ * Creates an array of 15 seconds interval all through the day
+ * @param string $lower		beginnin time ie 0 midnight
+ * @param string $upper		End time ie 23 o'clock
+ * @param string $step		amount to add to each step ie 15 seconds
+ * @return array $formatter
+ *
+ */
+function hoursRange($lower = 0, $upper = 900, $step = 15) {
+
+    $h = $lower;
+	while ($h <= $upper) {
+		if ($h > 0) {
+		$key = $h;
+		} else {
+			$key = 0;
+			$value = _AM_LASIUS_OFF;
+		}
+		if ($h > 0 && $h <= 59) {
+			//$value = sprintf(_SECONDS, $h);
+			$value = sprintf(_SECONDS, date("s",$h)); 
+		}
+		if ($h > 59 && $h <= 3599) {
+			//$value = sprintf(_MINUTES, ($h/60));
+			$value = sprintf(_MINUTES, date("i:s",$h)); 
+		}
+		if ($h > 3599 && $h <= 84599) {
+			//$value = sprintf(_MINUTES, ($h/60));
+			$value = sprintf(_HOURS, date("H:i:s",$h)); 
+		}
+		
+		$formatter[$key] = $value;
+		$h = $h + $step;
+	}
+    return $formatter;
+}
