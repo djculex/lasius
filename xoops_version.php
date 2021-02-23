@@ -29,7 +29,7 @@ $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 // ------------------- Informations ------------------- //
 $modversion = [
 	'name'                => _MI_LASIUS_NAME,
-	'version'             => 1.0.5,
+	'version'             => 1.5,
 	'description'         => _MI_LASIUS_DESC,
 	'author'              => 'Culex',
 	'author_mail'         => 'culex@culex.dk',
