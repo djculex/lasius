@@ -16,73 +16,27 @@ class Tools
         //$this->initVar('bid', XOBJ_DTYPE_INT, null, false);
     }
 
-    public function getBlockTitle($showfunc)
-    {
-        $data = [];
-        //SELECT title FROM `xoops2511_newblocks` WHERE `show_func` = "b_system_online_show"
-        $query   = 'SELECT title FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE show_func = '" . addslashes($showfunc) . "' ORDER BY title ASC ";
-        $result  = $GLOBALS['xoopsDB']->queryF($query);
-        $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
-        if ($counter >= 1) {
-            while ($sqlfetch = $GLOBALS['xoopsDB']->fetchArray($result)) {
-                $data = $sqlfetch['title'];
-            }
-        }
-        return $data;
-    }
+	/*
+	 * Create array of mudule titles supported by this module
+	 * @return array $array
+	 */
+	public function getBlockArray()
+	{
+		$db = new Db();
+		$array = array(
+			$db->getBlockTitle('b_system_online_show'),
+			$db->getBlockTitle('b_system_topposters_show'),
+			$db->getBlockTitle('b_system_newmembers_show'),
+			$db->getBlockTitle('b_system_comments_show'),
+			$db->getBlockTitle('publisher_items_recent_show'),
+			$db->getBlockTitle('publisher_latest_news_show'),
+			$db->getBlockTitle('b_newbb_post_show'),
+			$db->getBlockTitle('bExtcalMinicalShow')
+		);
+		return $array;
+	}
 
-    public function getBlockOptions($showfunc)
-    {
-        $data = [];
-        //SELECT title FROM `xoops2511_newblocks` WHERE `show_func` = "b_system_online_show"
-        $query   = 'SELECT options FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE show_func = '" . addslashes($showfunc) . "' ORDER BY options ASC ";
-        $result  = $GLOBALS['xoopsDB']->queryF($query);
-        $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
-        if ($counter >= 1) {
-            while ($sqlfetch = $GLOBALS['xoopsDB']->fetchArray($result)) {
-                $data = explode('|', $sqlfetch['options']);
-            }
-        }
-        return $data;
-    }
-
-    public function moduleNameById($dir)
-    {
-        $n = '';
-        $s = ($dir == 'htdocs') ? 'system' : $dir;
-        //SELECT name FROM `xoops2511_modules` WHERE `mid` = 10
-        $query   = 'SELECT name FROM ' . $GLOBALS['xoopsDB']->prefix('modules') . " WHERE dirname = '" . addslashes($s) . "' ORDER BY name ASC ";
-        $result  = $GLOBALS['xoopsDB']->queryF($query);
-        $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
-        if ($counter >= 1) {
-            while ($sqlfetch = $GLOBALS['xoopsDB']->fetchArray($result)) {
-                $n = ($sqlfetch['name'][0] != 'Lasius') ? $sqlfetch['name'] : 'System';
-            }
-        }
-        return $n;
-    }
-
-    public function midByName($name)
-    {
-        $n = '';
-        //SELECT name FROM `xoops2511_modules` WHERE `mid` = 10
-        $query   = 'SELECT mid FROM ' . $GLOBALS['xoopsDB']->prefix('modules') . " WHERE name = '" . addslashes($name) . "' ORDER BY mid ASC ";
-        $result  = $GLOBALS['xoopsDB']->queryF($query);
-        $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
-        if ($counter >= 1) {
-            while ($sqlfetch = $GLOBALS['xoopsDB']->fetchArray($result)) {
-                $n = ($name == 'Lasius' or $name == 'htdocs' or $name == '' or $name = 'index.php') ? 1 : $sqlfetch['mid'];
-            }
-        }
-        return $n;
-    }
-
-    public function CountMidByName($mbid)
-    {
-        $query  = 'SELECT count(*) FROM ' . $GLOBALS['xoopsDB']->prefix('modules') . " WHERE mid = '" . addslashes($mbid) . "'";
-        $result = $GLOBALS['xoopsDB']->queryF($query);
-        return $GLOBALS['xoopsDB']->getRowsNum($result);
-    }
+   
 
     public function b_system_online_show($url)
     {
