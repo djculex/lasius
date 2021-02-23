@@ -29,7 +29,7 @@ $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 // ------------------- Informations ------------------- //
 $modversion = [
 	'name'                => _MI_LASIUS_NAME,
-	'version'             => 1.4,
+	'version'             => 1.0.5,
 	'description'         => _MI_LASIUS_DESC,
 	'author'              => 'Culex',
 	'author_mail'         => 'culex@culex.dk',
@@ -50,6 +50,7 @@ $modversion = [
 	'min_db'              => ['mysql' => '5.6', 'mysqli' => '5.6'],
     'image'               => 'assets/images/logoModule.png',
 	'dirname'             => basename(__DIR__),
+	'sqlfile'             => ['mysql' => 'sql/mysql.sql'],
 	'sysicons16'          => '../../Frameworks/moduleclasses/icons/16',
 	'sysicons32'          => '../../Frameworks/moduleclasses/icons/32',
 	'modicons16'          => 'assets/icons/16',
@@ -78,6 +79,7 @@ $modversion['templates'] = [
 	['file' => 'lasius_admin_header.tpl', 'description' => '', 'type' => 'admin'],
 	['file' => 'lasius_admin_index.tpl', 'description' => '', 'type' => 'admin'],
 	['file' => 'lasius_admin_footer.tpl', 'description' => '', 'type' => 'admin'],
+	['file' => 'lasius_admin_blocks.tpl', 'description' => '', 'type' => 'admin'],
 	// User templates
 	['file' => 'lasius_header.tpl', 'description' => ''],
 	['file' => 'lasius_index.tpl', 'description' => ''],
@@ -113,206 +115,6 @@ $modversion['config'][] = [
 	'valuetype'   => 'int',
 	'default'     => 0,
 ];
-
-// Start auto-revive system blocks
-$modversion['config'][] = [
-	'name'        => 'reviveonlineusersblock',
-	'title'       => '_MI_LASIUS_REVIVE_ONLINEUSERS_BLOCK',
-	'description' => '_MI_LASIUS_REVIVE_ONLINEUSERS_BLOCK_DESC',
-	'formtype'    => 'select',
-	'valuetype'   => 'int',
-	'default'     => 0,
-	'options'     => [
-		0 => '0',
-		5000 => '5', 
-		10000 => '10', 
-		15000 => '15', 
-		20000 => '20',
-		30000 => '30',
-		45000 => '45',
-		60000 => '60',
-		90000 => '90',
-		120000 => '120',
-		180000 => '180',
-		240000 => '240',
-		300000 => '300'
-	],
-];
-
-$modversion['config'][] = [
-	'name'        => 'revivetoppostersblock',
-	'title'       => '_MI_LASIUS_REVIVE_TOPPOSTERS_BLOCK',
-	'description' => '_MI_LASIUS_REVIVE_TOPPOSTERS_BLOCK_DESC',
-	'formtype'    => 'select',
-	'valuetype'   => 'int',
-	'default'     => 0,
-	'options'     => [
-		0 => '0',
-		5000 => '5', 
-		10000 => '10', 
-		15000 => '15', 
-		20000 => '20',
-		30000 => '30',
-		45000 => '45',
-		60000 => '60',
-		90000 => '90',
-		120000 => '120',
-		180000 => '180',
-		240000 => '240',
-		300000 => '300'
-	],
-];
-
-$modversion['config'][] = [
-	'name'        => 'revivenewmembersblock',
-	'title'       => '_MI_LASIUS_REVIVE_NEWMEMBERS_BLOCK',
-	'description' => '_MI_LASIUS_REVIVE_NEWMEMBERS_BLOCK_DESC',
-	'formtype'    => 'select',
-	'valuetype'   => 'int',
-	'default'     => 0,
-	'options'     => [
-		0 => '0',
-		5000 => '5', 
-		10000 => '10', 
-		15000 => '15', 
-		20000 => '20',
-		30000 => '30',
-		45000 => '45',
-		60000 => '60',
-		90000 => '90',
-		120000 => '120',
-		180000 => '180',
-		240000 => '240',
-		300000 => '300'
-	],
-];
-
-$modversion['config'][] = [
-	'name'        => 'reviverecentcommentsblock',
-	'title'       => '_MI_LASIUS_REVIVE_RECENTCOMMENTS_BLOCK',
-	'description' => '_MI_LASIUS_REVIVE_RECENTCOMMENTS_BLOCK_DESC',
-	'formtype'    => 'select',
-	'valuetype'   => 'int',
-	'default'     => 0,
-	'options'     => [
-		0 => '0',
-		5000 => '5', 
-		10000 => '10', 
-		15000 => '15', 
-		20000 => '20',
-		30000 => '30',
-		45000 => '45',
-		60000 => '60',
-		90000 => '90',
-		120000 => '120',
-		180000 => '180',
-		240000 => '240',
-		300000 => '300'
-	],
-];
-// End auto-revive system blocks
-
-// start auto-revive publisher blocks
-
-$modversion['config'][] = [
-	'name'        => 'reviverecentpub_art_block',
-	'title'       => '_MI_LASIUS_REVIVE_RECENTPUBLISHERARTICLES_BLOCK',
-	'description' => '_MI_LASIUS_REVIVE_RECENTPUBLISHERARTICLES_BLOCK_DESC',
-	'formtype'    => 'select',
-	'valuetype'   => 'int',
-	'default'     => 0,
-	'options'     => [
-		0 => '0',
-		5000 => '5', 
-		10000 => '10', 
-		15000 => '15', 
-		20000 => '20',
-		30000 => '30',
-		45000 => '45',
-		60000 => '60',
-		90000 => '90',
-		120000 => '120',
-		180000 => '180',
-		240000 => '240',
-		300000 => '300'
-	],
-];
-
-$modversion['config'][] = [
-	'name'        => 'reviverecentpubnewsblock',
-	'title'       => '_MI_LASIUS_REVIVE_RECENTPUBLISHERNEWS_BLOCK',
-	'description' => '_MI_LASIUS_REVIVE_RECENTPUBLISHERNEWS_BLOCK_DESC',
-	'formtype'    => 'select',
-	'valuetype'   => 'int',
-	'default'     => 0,
-	'options'     => [
-		0 => '0',
-		5000 => '5', 
-		10000 => '10', 
-		15000 => '15', 
-		20000 => '20',
-		30000 => '30',
-		45000 => '45',
-		60000 => '60',
-		90000 => '90',
-		120000 => '120',
-		180000 => '180',
-		240000 => '240',
-		300000 => '300'
-	],
-];
-
-// NewBB
-$modversion['config'][] = [
-	'name'        => 'reviverecnewbbpostsblk',
-	'title'       => '_MI_LASIUS_REVIVE_RECENTNEWBBPOSTS_BLOCK',
-	'description' => '_MI_LASIUS_REVIVE_RECENTNEWBBPOSTS_BLOCK_DESC',
-	'formtype'    => 'select',
-	'valuetype'   => 'int',
-	'default'     => 0,
-	'options'     => [
-		0 => '0',
-		5000 => '5', 
-		10000 => '10', 
-		15000 => '15', 
-		20000 => '20',
-		30000 => '30',
-		45000 => '45',
-		60000 => '60',
-		90000 => '90',
-		120000 => '120',
-		180000 => '180',
-		240000 => '240',
-		300000 => '300'
-	],
-];
-
-// ExtCal
-$modversion['config'][] = [
-	'name'        => 'reviveextcalminiblk',
-	'title'       => '_MI_LASIUS_REVIVE_EXTCALMINICAL_BLOCK',
-	'description' => '_MI_LASIUS_REVIVE_EXTCALMINICAL_BLOCK_DESC',
-	'formtype'    => 'select',
-	'valuetype'   => 'int',
-	'default'     => 0,
-	'options'     => [
-		0 => '0',
-		5000 => '5', 
-		10000 => '10', 
-		15000 => '15', 
-		20000 => '20',
-		30000 => '30',
-		45000 => '45',
-		60000 => '60',
-		90000 => '90',
-		120000 => '120',
-		180000 => '180',
-		240000 => '240',
-		300000 => '300'
-	],
-];
-
-// end auto-revive publisher blocks
 
 // ------------------- Config ------------------- //
 // Keywords
