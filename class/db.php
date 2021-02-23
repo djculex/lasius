@@ -18,7 +18,7 @@ class Db extends \XoopsPersistableObjectHandler
     public function __construct(\XoopsDatabase $db = null, $helper = null)
     {
 		if (null === $helper) {
-            $helper = \XoopsModules\lasius\Helper::getInstance();
+            $helper = Helper::getInstance();
         }
 		$this->helper = $helper;
 		if (null === $db) {
