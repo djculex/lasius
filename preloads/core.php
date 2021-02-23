@@ -48,30 +48,33 @@ class LasiusCorePreload extends \XoopsPreloadItem
 		$script  .= "var Lasius_myID = 1;\n";
 		$script  .= "var Lasius_refurl = '".$name. "';\n";
 		$script  .= 'var Lasius_usepopups = ' . $helper->getConfig('LASIUSUSEDIALOG') . ";\n";
+		/*
+			$Db->getSetActivated($Db->getBlockTitle('bExtcalMinicalShow'));
 		
-		$script .= 'var Lasius_reviveonlineusersblock = ' . $helper->getConfig('reviveonlineusersblock') . ";\n";
+		*/
+		$script .= 'var Lasius_reviveonlineusersblock = ' . $Db->getSetSelected($Db->getBlockTitle('b_system_online_show')) . ";\n";
 		$script .= "var Lasius_reviveonlineusersblock_title = '" . $Db->getBlockTitle('b_system_online_show') . "';\n";
 		
-		$script .= 'var Lasius_revivetoppostersblock = ' . $helper->getConfig('revivetoppostersblock') . ";\n";
+		$script .= 'var Lasius_revivetoppostersblock = ' . $Db->getSetSelected($Db->getBlockTitle('b_system_topposters_show')) . ";\n";
 		$script .= "var Lasius_revivetoppostersblock_title = '" . $Db->getBlockTitle('b_system_topposters_show') . "';\n";
 		
-		$script .= 'var Lasius_revivenewmembersblock = ' . $helper->getConfig('revivenewmembersblock') . ";\n";
+		$script .= 'var Lasius_revivenewmembersblock = ' . $Db->getSetSelected($Db->getBlockTitle('b_system_newmembers_show')) . ";\n";
 		$script .= "var Lasius_revivenewmembersblock_title = '" . $Db->getBlockTitle('b_system_newmembers_show') . "';\n";
 		
 		
-		$script .= 'var Lasius_reviverecentcommentsblock = ' . $helper->getConfig('reviverecentcommentsblock') . ";\n";
+		$script .= 'var Lasius_reviverecentcommentsblock = ' . $Db->getSetSelected($Db->getBlockTitle('b_system_comments_show')) . ";\n";
 		$script .= "var Lasius_reviverecentcommentsblock_title = '" . $Db->getBlockTitle('b_system_comments_show') . "';\n";
 		
-		$script .= 'var Lasius_reviverecentpub_art_block = ' . $helper->getConfig('reviverecentpub_art_block') . ";\n";
+		$script .= 'var Lasius_reviverecentpub_art_block = ' . $Db->getSetSelected($Db->getBlockTitle('publisher_items_recent_show')) . ";\n";
 		$script .= "var Lasius_reviverecentpub_art_block_title = '" . $Db->getBlockTitle('publisher_items_recent_show') . "';\n";
 		
-		$script .= 'var Lasius_reviverecentpubnewsblock = ' . $helper->getConfig('reviverecentpubnewsblock') . ";\n";
+		$script .= 'var Lasius_reviverecentpubnewsblock = ' . $Db->getSetSelected($Db->getBlockTitle('publisher_latest_news_show')) . ";\n";
 		$script .= "var Lasius_reviverecentpubnewsblock_title = '" . $Db->getBlockTitle('publisher_latest_news_show') . "';\n";
 		
-		$script .= 'var Lasius_reviverecentnewbbpostsblock = ' . $helper->getConfig('reviverecnewbbpostsblk') . ";\n";
+		$script .= 'var Lasius_reviverecentnewbbpostsblock = ' . $Db->getSetSelected($Db->getBlockTitle('b_newbb_post_show')) . ";\n";
 		$script .= "var Lasius_reviverecentnewbbpostsblock_title = '" . $Db->getBlockTitle('b_newbb_post_show') . "';\n";
 		
-		$script .= 'var Lasius_reviverecentextcalminicalblock = ' . $helper->getConfig('reviveextcalminiblk') . ";\n";
+		$script .= 'var Lasius_reviverecentextcalminicalblock = ' . $Db->getSetSelected($Db->getBlockTitle('bExtcalMinicalShow')) . ";\n";
 		$script .= "var Lasius_reviverecentextcalminicalblock_title = '" . $Db->getBlockTitle('bExtcalMinicalShow') . "';\n";
 		
 		$script .= '};' . "\n";
