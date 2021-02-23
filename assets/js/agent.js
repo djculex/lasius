@@ -208,8 +208,6 @@ jQuery( document ).ready(function() {
 						
 						jQuery('aside h4.block-title:contains("' + Lasius_reviverecentextcalminicalblock_title + '")').parent("aside").load(Lasius_systemurl + "/agent.php?type=extcalminical", function() {
 							jQuery(this).prepend('<h4 class="block-title">' + Lasius_reviverecentextcalminicalblock_title + '</h4>');
-								//console.log('replace  topposters block.');
-								//console.log(Lasius_systemurl + "/agent.php?type=topposters");
 						}).fadeIn(1000);
 					}			
 			}
