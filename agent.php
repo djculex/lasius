@@ -21,7 +21,8 @@
 //use Xoops\Core\FixedGroups;
 use Xmf\Request;
 use XoopsModules\Lasius\{
-	Tools
+	Tools,
+	Db
 };
 
 require_once dirname(__DIR__,2) . '/mainfile.php';
@@ -35,7 +36,7 @@ $name = Request::getString('name', '', 'GET');
 $tools = new Tools();
 // language files
 $language = $xoopsConfig['language'];
-
+$Db = new Db();
 
 switch ($type) {
     case 'onlinenow':
@@ -68,7 +69,7 @@ switch ($type) {
 	case 'recentcomments':
 		$tpl = new XoopsTpl();
 		$tpl->caching = 0;
-		$o = $tools->getBlockOptions('b_system_comments_show');
+		$o = $Db->getBlockOptions('b_system_comments_show');
 		$result = b_system_comments_show($o);
 		$tpl->assign('block', $result);	
 		$tpl->display('db:system_block_comments.tpl');
@@ -82,7 +83,7 @@ switch ($type) {
 		require_once XOOPS_ROOT_PATH . '/modules/publisher/language/' . $language . '/blocks.php';
 		$tpl = new XoopsTpl();
 		$tpl->caching = 0;
-		$o = $tools->getBlockOptions('publisher_items_recent_show');
+		$o = $Db->getBlockOptions('publisher_items_recent_show');
 		$result = publisher_items_recent_show($o);
 		$tpl->assign('block', $result);	
 		$tpl->display('db:publisher_items_recent.tpl');
@@ -96,7 +97,7 @@ switch ($type) {
 		require_once XOOPS_ROOT_PATH . '/modules/publisher/language/' . $language . '/blocks.php';
 		$tpl = new XoopsTpl();
 		$tpl->caching = 0;
-		$o = $tools->getBlockOptions('publisher_latest_news_show');
+		$o = $Db->getBlockOptions('publisher_latest_news_show');
 		$result = publisher_latest_news_show($o);
 		$tpl->assign('block', $result);	
 		$tpl->display('db:publisher_latest_news.tpl');
@@ -111,7 +112,7 @@ switch ($type) {
 		$tpl = new XoopsTpl();
 		$tpl->caching = 0;
 		
-		$o = $tools->getBlockOptions('b_newbb_post_show');
+		$o = $Db->getBlockOptions('b_newbb_post_show');
 		$result = $tools->b_newbb_post_show($o);
 		$tpl->assign('block', $result);	
 		$tpl->display('db:newbb_block_post.tpl');
@@ -127,7 +128,7 @@ switch ($type) {
 		$tpl = new XoopsTpl();
 		$tpl->caching = 0;
 		
-		$o = $tools->getBlockOptions('bExtcalMinicalShow');
+		$o = $Db->getBlockOptions('bExtcalMinicalShow');
 		$o[10] = ''; // remove hourlog clock from extcal. 
 					 // If not screen wil jitter
 		$result = bExtcalMinicalShow($o);
