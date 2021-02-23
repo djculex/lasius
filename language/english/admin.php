@@ -54,4 +54,5 @@ include_once __DIR__ . '/common.php';
 \define('_AM_LASIUS_SUPPORT_FORUM', 'Support Forum');
 \define('_AM_LASIUS_DONATION_AMOUNT', 'Donation Amount');
 \define('_AM_LASIUS_MAINTAINEDBY', ' is maintained by ');
+\define('_AM_LASIUS_OFF', 'Off');
 // ---------------- End ----------------

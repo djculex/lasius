@@ -32,6 +32,7 @@ define('_MI_LASIUS_DESC', 'This module is for doing following...');
 define('_MI_LASIUS_ADMENU1', 'Dashboard');
 define('_MI_LASIUS_ADMENU2', 'Feedback');
 define('_MI_LASIUS_ABOUT', 'About');
+define('_MI_LASIUS_ADMENU3', 'Block settings');
 // Config
 define('_MI_LASIUS_KEYWORDS', 'Keywords');
 define('_MI_LASIUS_KEYWORDS_DESC', 'Insert here the keywords (separate by comma)');
@@ -65,35 +66,4 @@ define('_MI_LASIUS_UPDJQUERYUI_DESC', 'Include jquery UI if not present<br>If \'
 define('_MI_LASIUS_USEDIALOG', 'Replace pop-ups with dialog ?');
 define('_MI_LASIUS_USEDIALOG_DESC', 'Use jQueryUI dialog instead of popups?<br>If \'NO\' default Xoops popups will be used.Else jquerUI dialog will be used <a href="https://jqueryui.com/dialog/" target="_BLANK"> Se demo here </a>.');
 
-// revive blocks
-// system blocks
-define('_MI_LASIUS_REVIVE_ONLINEUSERS_BLOCK', 'Auto refresh \'Online users\' block ?');
-define('_MI_LASIUS_REVIVE_ONLINEUSERS_BLOCK_DESC', 'Automaticly refresh the block \'Online users\' block every x seconds');
-define('_MI_LASIUS_REVIVE_ONLINEUSERS_BLOCKSECS', 'Refresh \'online users\' every ?? secons ?');
-define('_MI_LASIUS_REVIVE_TOPPOSTERS_BLOCK', 'Auto refresh \'Top posters\' block ?');
-define('_MI_LASIUS_REVIVE_TOPPOSTERS_BLOCK_DESC', 'Automaticly refresh the block \'Top posters\' block every x seconds');
-define('_MI_LASIUS_REVIVE_TOPPOSTERS_BLOCKSECS', 'Refresh \'Top posters\' every ?? secons ?');
-
-define('_MI_LASIUS_REVIVE_NEWMEMBERS_BLOCK', 'Auto refresh \'New Members\' block ?');
-define('_MI_LASIUS_REVIVE_NEWMEMBERS_BLOCK_DESC', 'Automaticly refresh the block \'New Members\' block every x seconds');
-define('_MI_LASIUS_REVIVE_NEWMEMBERS_BLOCKSECS', 'Refresh \'New Members\' every ?? secons ?');
-
-define('_MI_LASIUS_REVIVE_RECENTCOMMENTS_BLOCK', 'Auto refresh \'Recent comments\' block ?');
-define('_MI_LASIUS_REVIVE_RECENTCOMMENTS_BLOCK_DESC', 'Automaticly refresh the block \'Recent comments\' block every x seconds');
-define('_MI_LASIUS_REVIVE_RECENTCOMMENTS_BLOCKSECS', 'Refresh \'Recent comments\' every ?? secons ?');
-
-// publisher blocks
-define('_MI_LASIUS_REVIVE_RECENTPUBLISHERARTICLES_BLOCK', 'Auto refresh \'Recent articles\' block ?');
-define('_MI_LASIUS_REVIVE_RECENTPUBLISHERARTICLES_BLOCK_DESC', 'Automaticly refresh the publisher block \'Recent articles\' block every x seconds');
-
-define('_MI_LASIUS_REVIVE_RECENTPUBLISHERNEWS_BLOCK', 'Auto refresh \'Recent Puclisher News\' block ?');
-define('_MI_LASIUS_REVIVE_RECENTPUBLISHERNEWS_BLOCK_DESC', 'Automaticly refresh the publisher News block \'Recent Publisher News\' block every x seconds');
-
-// NEWBB
-define('_MI_LASIUS_REVIVE_RECENTNEWBBPOSTS_BLOCK', 'Auto refresh \'Recent NewBB posts\' block ?');
-define('_MI_LASIUS_REVIVE_RECENTNEWBBPOSTS_BLOCK_DESC', 'Automaticly refresh the publisher News block \'Recent NewBB posts\' block every x seconds');
-
-//ExtCal
-define('_MI_LASIUS_REVIVE_EXTCALMINICAL_BLOCK', 'Auto refresh \'ExtCal mini Calendar\' block ?');
-define('_MI_LASIUS_REVIVE_EXTCALMINICAL_BLOCK_DESC', 'Automaticly refresh the publisher News block \'ExtCal mini Calendar\' block every x seconds');
 // ---------------- End ----------------
