@@ -25,9 +25,7 @@ use XoopsModules\Lasius\{
 };
 
 require_once dirname(__DIR__,2) . '/mainfile.php';
-
 require_once XOOPS_ROOT_PATH . '/class/template.php';
-
 include_once XOOPS_ROOT_PATH .'/modules/system/blocks/system_blocks.php';
 
 // Type of block ("onlinenow", "topposters") etc
