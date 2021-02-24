@@ -12,15 +12,15 @@ jQuery( document ).ready(function() {
 		// function name = cfn + Func();
 		
 		
-			// start interval after 10000 ms			
-			var interValStart_onlineusers = setInterval(SystemBlock_checkOnlineUsers, 5000); 
-			var interValStart_topposters = setInterval(SystemBlock_checkTopPosters, 5000); 
-			var interValStart_newmembers = setInterval(SystemBlock_checkNewMembers, 5000); 
-			var interValStart_checkrecentcomments = setInterval(SystemBlock_checkRecentComments, 5000); 
-			var interValStart_recentpublisherarticles = setInterval(SystemBlock_checkRecentPublisherArticles, 5000); 
-			var interValStart_recentpublishernews = setInterval(SystemBlock_checkRecentPublisherNews, 5000); 
-			var interValStart_reviverecnewbbpostsblk = setInterval(SystemBlock_checkRecentNewBBPosts, 5000); 
-			var interValStart_reviverecentextcalminicalblocksblk = setInterval(SystemBlock_checkRecentExtCalMiniCal, 5000); 
+			// start interval after 5000 ms			
+			var interValStart_onlineusers = setInterval(SystemBlock_checkOnlineUsers, (Lasius_reviveonlineusersblock * 1000)); 
+			var interValStart_topposters = setInterval(SystemBlock_checkTopPosters, (Lasius_revivetoppostersblock * 1000)); 
+			var interValStart_newmembers = setInterval(SystemBlock_checkNewMembers, (Lasius_revivenewmembersblock * 1000)); 
+			var interValStart_checkrecentcomments = setInterval(SystemBlock_checkRecentComments, (Lasius_reviverecentcommentsblock * 1000)); 
+			var interValStart_recentpublisherarticles = setInterval(SystemBlock_checkRecentPublisherArticles, (Lasius_reviverecentpub_art_block * 1000)); 
+			var interValStart_recentpublishernews = setInterval(SystemBlock_checkRecentPublisherNews, (Lasius_reviverecentpubnewsblock * 1000)); 
+			var interValStart_reviverecnewbbpostsblk = setInterval(SystemBlock_checkRecentNewBBPosts, (Lasius_reviverecentnewbbpostsblock * 1000)); 
+			var interValStart_reviverecentextcalminicalblocksblk = setInterval(SystemBlock_checkRecentExtCalMiniCal, (Lasius_reviverecentextcalminicalblock * 1000)); 
 			
 			var mutationObserver = new MutationObserver(function(mutations) {
 			  mutations.forEach(function(mutation) {
