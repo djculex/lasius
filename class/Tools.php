@@ -41,6 +41,7 @@ class Tools
     public function b_system_online_show($url)
     {
         global $xoopsUser, $xoopsModule;
+		$db = new Db();
         /* @var XoopsOnlineHandler $online_handler */
         $online_handler = xoops_getHandler('online');
         // set gc probabillity to 10% for now..
@@ -59,9 +60,9 @@ class Tools
 
         $onlines = $online_handler->getAll();
         if (!empty($onlines)) {
-            $title   = $this->moduleNameById($url);
-            $mbid    = $this->midByName($title);
-            $count   = $this->CountMidByName($mbid);
+            $title   = $db->moduleNameById($url);
+            $mbid    = $db->midByName($title);
+            $count   = $db->CountMidByName($mbid);
             $total   = count($onlines);
             $block   = [];
             $guests  = 0;
