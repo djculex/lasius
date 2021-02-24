@@ -105,7 +105,7 @@ class Db extends \XoopsPersistableObjectHandler
         return $sum;
 	}
 	
-	    public function getBlockTitle($showfunc)
+	public function getBlockTitle($showfunc)
     {
         $data = [];
         //SELECT title FROM `xoops2511_newblocks` WHERE `show_func` = "b_system_online_show"
@@ -115,6 +115,21 @@ class Db extends \XoopsPersistableObjectHandler
         if ($counter >= 1) {
             while ($sqlfetch = $GLOBALS['xoopsDB']->fetchArray($result)) {
                 $data = $sqlfetch['title'];
+            }
+        }
+        return $data;
+    }
+	
+	public function getBlockName($showfunc)
+    {
+        $data = [];
+        //SELECT title FROM `xoops2511_newblocks` WHERE `show_func` = "b_system_online_show"
+        $query   = 'SELECT name FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE show_func = '" . addslashes($showfunc) . "' ORDER BY name ASC ";
+        $result  = $GLOBALS['xoopsDB']->queryF($query);
+        $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
+        if ($counter >= 1) {
+            while ($sqlfetch = $GLOBALS['xoopsDB']->fetchArray($result)) {
+                $data = $sqlfetch['name'];
             }
         }
         return $data;
@@ -143,6 +158,20 @@ class Db extends \XoopsPersistableObjectHandler
         if ($counter >= 1) {
             while ($sqlfetch = $GLOBALS['xoopsDB']->fetchArray($result)) {
                 $data = $sqlfetch['title'];
+            }
+        }
+        return $data;
+    }
+	
+	public function getBlockNameFromTitle($title)
+    {
+        $data = [];
+        $query   = 'SELECT name FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE title = '" . addslashes($title) . "' ORDER BY name ASC ";
+        $result  = $GLOBALS['xoopsDB']->queryF($query);
+        $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
+        if ($counter >= 1) {
+            while ($sqlfetch = $GLOBALS['xoopsDB']->fetchArray($result)) {
+                $data = $sqlfetch['name'];
             }
         }
         return $data;
