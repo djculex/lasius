@@ -35,15 +35,53 @@ class Tools
 		);
 		return $array;
 	}
+	/**
+	 * function to refresh online tables
+	 * Thanks to NewBB :-)
+	 *
+	 */
+   public function update()
+    {
+        global $xoopsModule;
 
-   
+        // set gc probabillity to 10% for now..
+        if (mt_rand(1, 100) < 60) {
+            $online_handler->gc(150);
+        }
+        if (is_object($GLOBALS['xoopsUser'])) {
+            $uid   = $GLOBALS['xoopsUser']->getVar('uid');
+            $uname = $GLOBALS['xoopsUser']->getVar('uname');
+            $name  = $GLOBALS['xoopsUser']->getVar('name');
+        } else {
+            $uid   = 0;
+            $uname = '';
+            $name  = '';
+        }
+
+        /** @var \XoopsOnlineHandler $xoopsOnlineHandler */
+        $xoopsOnlineHandler = xoops_getHandler('online');
+        $xoopsupdate         = $xoopsOnlineHandler->write($uid, $uname, time(), $xoopsModule->getVar('mid'), \Xmf\IPAddress::fromRequest()->asReadable());
+        if (!$xoopsupdate) {
+            //xoops_error("newbb online upate error");
+        }
+
+        //$uname = (empty($GLOBALS['xoopsModuleConfig']['show_realname']) || empty($name)) ? $uname : $name;
+        //$this->write($uid, $uname, time(), $this->forum_id, IPAddress::fromRequest()->asReadable(), $this->topic_id);
+    }
 
     public function b_system_online_show($url)
     {
         global $xoopsUser, $xoopsModule;
 		$db = new Db();
         /* @var XoopsOnlineHandler $online_handler */
+		$start = 0;
         $online_handler = xoops_getHandler('online');
+		$online_total = $online_handler->getCount();
+		$limit = ($online_total > 20) ? 20 : $online_total;
+		$criteria = new \CriteriaCompo();
+		$criteria->setLimit($limit);
+		$criteria->setStart($start);
+		//$onlines = $online_handler->getAll($criteria);
         // set gc probabillity to 10% for now..
         if (random_int(1, 100) < 11) {
             $online_handler->gc(300);
@@ -58,7 +96,7 @@ class Tools
         $requestIp = \Xmf\IPAddress::fromRequest()->asReadable();
         $requestIp = (false === $requestIp) ? '0.0.0.0' : $requestIp;
 
-        $onlines = $online_handler->getAll();
+        $onlines = $online_handler->getAll($criteria);
         if (!empty($onlines)) {
             $title   = $db->moduleNameById($url);
             $mbid    = $db->midByName($title);
@@ -68,7 +106,7 @@ class Tools
             $guests  = 0;
             $members = '';
             for ($i = 0; $i < $total; ++$i) {
-                if ($onlines[$i]['online_uid'] > 0) {
+                if ($onlines[$i]['online_uid'] >= 0) {
                     $members .= ' <a href="' . XOOPS_URL . '/userinfo.php?uid=' . $onlines[$i]['online_uid'] . '" title="' . $onlines[$i]['online_uname'] . '">' . $onlines[$i]['online_uname'] . '</a>,';
                 } else {
                     ++$guests;

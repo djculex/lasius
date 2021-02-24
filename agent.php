@@ -37,7 +37,7 @@ $tools = new Tools();
 // language files
 $language = $xoopsConfig['language'];
 $Db = new Db();
-
+$tools->update();
 switch ($type) {
     case 'onlinenow':
 		$tpl = new \XoopsTpl();
