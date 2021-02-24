@@ -53,8 +53,8 @@ $xoopsTpl->assign('activeblocks', $nab);
 $xoopsTpl->assign('supportedblocks', $tools->getBlockArray());
 foreach ($tools->getBlockArray() as $k => $v) {
 	$ti[$v] = hoursRange( 0, 3600, 15 );
-	$si[$v] = $Db->getSetSelected($v);
-	$ai[$v] = $Db->getSetActivated($v);
+	$si[$v] = $Db->getSetSelected($Db->getBlockNameFromTitle($v));
+	$ai[$v] = $Db->getSetActivated($Db->getBlockNameFromTitle($v));
 }
 $xoopsTpl->assign('timeInterval',$ti);
 $xoopsTpl->assign('selected',$si);
