@@ -37,9 +37,11 @@ $tools = new Tools();
 // language files
 $language = $xoopsConfig['language'];
 $Db = new Db();
-$tools->update();
-switch ($type) {
-    case 'onlinenow':
+$tools->update($name);
+
+switch ($type) {   
+	// Whos online system module
+	case 'onlinenow':
 		$tpl = new \XoopsTpl();
 		$tpl->caching = 0;
 		$result = $tools->b_system_online_show($name);
@@ -47,10 +49,9 @@ switch ($type) {
 		//$tpl->display(XOOPS_ROOT_PATH . "/modules/system/templates/blocks/system_block_online.tpl");
 		$tpl->display('db:system_block_online.tpl');
         break;
-		
+	
+	// Top posters
     case 'topposters':
-        //$moduleHandler = xoops_getHandler('module');
-		//$module  = $moduleHandler->get($mid);
 		$tpl = new XoopsTpl();
 		$tpl->caching = 0;
 		$o = $tools->getBlockOptions('b_system_topposters_show');
@@ -58,7 +59,9 @@ switch ($type) {
 		$tpl->assign('block', $result);	
 		$tpl->display('db:system_block_topusers.tpl');
         break;
-    case 'newmembers':
+    
+	// New members
+	case 'newmembers':
 		$tpl = new XoopsTpl();
 		$tpl->caching = 0;
 		$o = $tools->getBlockOptions('b_system_newmembers_show');
@@ -66,6 +69,8 @@ switch ($type) {
 		$tpl->assign('block', $result);	
 		$tpl->display('db:system_block_newusers.tpl');
         break;
+	
+	//Recent system comments
 	case 'recentcomments':
 		$tpl = new XoopsTpl();
 		$tpl->caching = 0;
@@ -74,8 +79,9 @@ switch ($type) {
 		$tpl->assign('block', $result);	
 		$tpl->display('db:system_block_comments.tpl');
         break;
-		
-	case 'recentpublisherarticles': //publisher module
+	
+	//publisher module
+	case 'recentpublisherarticles': 
 		if (!file_exists(XOOPS_ROOT_PATH . '/modules/publisher/language/' . $language . '/blocks.php')) {
 			$language = 'english';
 		}
@@ -88,8 +94,9 @@ switch ($type) {
 		$tpl->assign('block', $result);	
 		$tpl->display('db:publisher_items_recent.tpl');
         break;
-		
-	case 'recentpublishernews': //publisher module
+	
+	//publisher module	
+	case 'recentpublishernews': 
 		if (!file_exists(XOOPS_ROOT_PATH . '/modules/publisher/language/' . $language . '/blocks.php')) {
 			$language = 'english';
 		}
@@ -103,8 +110,8 @@ switch ($type) {
 		$tpl->display('db:publisher_latest_news.tpl');
         break;
 		
-	
-	case 'recentnewbbposts': //newBB module
+	//newBB module
+	case 'recentnewbbposts': 
 		if (!file_exists(XOOPS_ROOT_PATH . '/modules/newbb/language/' . $language . '/blocks.php')) {
 			$language = 'english';
 		}
