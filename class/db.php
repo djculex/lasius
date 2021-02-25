@@ -207,6 +207,20 @@ class Db extends \XoopsPersistableObjectHandler
         }
         return $n;
     }
+	
+	public function moduleNameByMid($id)
+    {
+        //SELECT name FROM `xoops2511_modules` WHERE `mid` = 10
+        $query   = 'SELECT name FROM ' . $GLOBALS['xoopsDB']->prefix('modules') . " WHERE mid = " . addslashes($id) . " ORDER BY name ASC ";
+        $result  = $GLOBALS['xoopsDB']->queryF($query);
+        $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
+        if ($counter >= 1) {
+             while ($sqlfetch = $GLOBALS['xoopsDB']->fetchArray($result)) {
+                $data = $sqlfetch['name'];
+            }
+        }
+        return $data;
+    }
 
     public function midByName($name)
     {
