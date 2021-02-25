@@ -208,3 +208,4 @@ function hoursRange($lower = 0, $upper = 900, $step = 15) {
 	}
     return $formatter;
 }
+
