@@ -297,7 +297,7 @@ class Tools
 	
 	public function setJqueryScript()
 	{
-		if ($_SESSION["lasiusCoreEvents"] != "Done") {
+		if ($_SESSION["lasiusCoreEvents"] != "Done") { // Check $_session
 		global $xoopsConfig;
 		$helper = \XoopsModules\Lasius\Helper::getInstance();
 		$_SESSION["lasiusCoreEvents"] = "Done";

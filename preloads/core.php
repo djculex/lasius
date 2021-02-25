@@ -36,9 +36,7 @@ class LasiusCorePreload extends \XoopsPreloadItem
 		
 		$tools = new Tools();
 		$tools->setJqueryScript();
-		$_SESSION["lasiusCoreEvents"] = null;
-		/** @var \XoopsModules\Lasius\Helper $helper */
-		
+		$_SESSION["lasiusCoreEvents"] = null;		
 	}
 
 }
