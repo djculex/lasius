@@ -43,10 +43,11 @@ class Tools
    public function update()
     {
         global $xoopsModule;
-
+        /** @var \XoopsOnlineHandler $xoopsOnlineHandler */
+        $xoopsOnlineHandler = xoops_getHandler('online');
         // set gc probabillity to 10% for now..
         if (mt_rand(1, 100) < 60) {
-            $online_handler->gc(150);
+            $xoopsOnlineHandler->gc(150);
         }
         if (is_object($GLOBALS['xoopsUser'])) {
             $uid   = $GLOBALS['xoopsUser']->getVar('uid');
@@ -57,9 +58,6 @@ class Tools
             $uname = '';
             $name  = '';
         }
-
-        /** @var \XoopsOnlineHandler $xoopsOnlineHandler */
-        $xoopsOnlineHandler = xoops_getHandler('online');
         $xoopsupdate         = $xoopsOnlineHandler->write($uid, $uname, time(), $xoopsModule->getVar('mid'), \Xmf\IPAddress::fromRequest()->asReadable());
         if (!$xoopsupdate) {
             //xoops_error("newbb online upate error");
@@ -106,7 +104,7 @@ class Tools
             $guests  = 0;
             $members = '';
             for ($i = 0; $i < $total; ++$i) {
-                if ($onlines[$i]['online_uid'] >= 0) {
+                if ($onlines[$i]['online_uid'] > 0) {
                     $members .= ' <a href="' . XOOPS_URL . '/userinfo.php?uid=' . $onlines[$i]['online_uid'] . '" title="' . $onlines[$i]['online_uname'] . '">' . $onlines[$i]['online_uname'] . '</a>,';
                 } else {
                     ++$guests;
@@ -296,4 +294,74 @@ class Tools
         $block['indexNav'] = (int)$options[4];
         return $block;
     }
+	
+	public function setJqueryScript()
+	{
+		if ($_SESSION["lasiusCoreEvents"] != "Done") {
+		global $xoopsConfig;
+		$helper = \XoopsModules\Lasius\Helper::getInstance();
+		$_SESSION["lasiusCoreEvents"] = "Done";
+		$Db = new Db();
+		
+		$script = null;
+		$name = basename($_SERVER['REQUEST_URI']);
+		// language files
+		$language = $xoopsConfig['language'];
+		
+		// Check prevents multiple loads
+		//$script = "jQuery(document).ready(function(){"."\n";
+		//$script  .= 'var Lasius_myID;' . "\n";
+		
+        $script   = "if (typeof Lasius_myID === 'undefined') {"."\n";
+        $script  .= "var Lasius_systemurl = '" . XOOPS_URL . "/modules/lasius';\n";
+		
+		$script  .= "var Lasius_myID = 1;\n";
+		$script  .= "var Lasius_refurl = '".$name. "';\n";
+		$script  .= 'var Lasius_usepopups = ' . $helper->getConfig('LASIUSUSEDIALOG') . ";\n";
+		$script  .= 'var Lasius_reviveonlineusersblock = ' . $Db->getSetSelected($Db->getBlockName('b_system_online_show')) . ";\n";
+		$script  .= "var Lasius_reviveonlineusersblock_title = '" . $Db->getBlockTitle('b_system_online_show') . "';\n";
+		
+		$script  .= 'var Lasius_revivetoppostersblock = ' . $Db->getSetSelected($Db->getBlockName('b_system_topposters_show')) . ";\n";
+		$script  .= "var Lasius_revivetoppostersblock_title = '" . $Db->getBlockTitle('b_system_topposters_show') . "';\n";
+		
+		$script  .= 'var Lasius_revivenewmembersblock = ' . $Db->getSetSelected($Db->getBlockName('b_system_newmembers_show')) . ";\n";
+		$script  .= "var Lasius_revivenewmembersblock_title = '" . $Db->getBlockTitle('b_system_newmembers_show') . "';\n";
+		
+		
+		$script  .= 'var Lasius_reviverecentcommentsblock = ' . $Db->getSetSelected($Db->getBlockName('b_system_comments_show')) . ";\n";
+		$script  .= "var Lasius_reviverecentcommentsblock_title = '" . $Db->getBlockTitle('b_system_comments_show') . "';\n";
+		
+		$script  .= 'var Lasius_reviverecentpub_art_block = ' . $Db->getSetSelected($Db->getBlockName('publisher_items_recent_show')) . ";\n";
+		$script  .= "var Lasius_reviverecentpub_art_block_title = '" . $Db->getBlockTitle('publisher_items_recent_show') . "';\n";
+		
+		$script  .= 'var Lasius_reviverecentpubnewsblock = ' . $Db->getSetSelected($Db->getBlockName('publisher_latest_news_show')) . ";\n";
+		$script  .= "var Lasius_reviverecentpubnewsblock_title = '" . $Db->getBlockTitle('publisher_latest_news_show') . "';\n";
+		
+		$script  .= 'var Lasius_reviverecentnewbbpostsblock = ' . $Db->getSetSelected($Db->getBlockName('b_newbb_post_show')) . ";\n";
+		$script  .= "var Lasius_reviverecentnewbbpostsblock_title = '" . $Db->getBlockTitle('b_newbb_post_show') . "';\n";
+		
+		$script  .= 'var Lasius_reviverecentextcalminicalblock = ' . $Db->getSetSelected($Db->getBlockName('bExtcalMinicalShow')) . ";\n";
+		$script  .= "var Lasius_reviverecentextcalminicalblock_title = '" . $Db->getBlockTitle('bExtcalMinicalShow') . "';\n";
+		
+		$script  .= '};' . "\n";
+		//$script  .= "});"."\n";
+		
+
+		// Include jquery new or framework ?
+		
+		if ($helper->getConfig('updatejquery') > 0) {
+			$GLOBALS['xoTheme']->addScript('https://code.jquery.com/jquery-latest.min.js');
+		} else {
+			$GLOBALS['xoTheme']->addScript('browse.php?Frameworks/jquery/jquery.js');
+		}
+		
+		// Jquery ui
+		if ($helper->getConfig('updatejqueryui') > 0) {
+			$GLOBALS['xoTheme']->addScript('browse.php?Frameworks/jquery/plugins/jquery.ui.js');
+		}
+		$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/lasius/assets/js/agent.js');
+		$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/lasius/assets/js/lasius.js');
+		$GLOBALS['xoTheme']->addScript(null, array( 'type' => 'application/x-javascript' ), $script, 'lasiusCore');
+		}
+	}
 }
