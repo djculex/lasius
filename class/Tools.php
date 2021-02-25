@@ -346,7 +346,6 @@ class Tools
 		$script  .= '};' . "\n";
 		//$script  .= "});"."\n";
 		
-
 		// Include jquery new or framework ?
 		
 		if ($helper->getConfig('updatejquery') > 0) {
