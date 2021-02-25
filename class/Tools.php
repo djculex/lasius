@@ -35,17 +35,35 @@ class Tools
 		);
 		return $array;
 	}
+	
+	/* Function to search for string part
+	 * @param string $a			string to search in
+	 * @return string $value	string name of module
+	 *
+	 */
+	 function searchStringPart($a)
+	 {
+		if (substr_count($a, 'userinfo')) {
+			return 1;
+		}
+	 }
+	
 	/**
 	 * function to refresh online tables
 	 * Thanks to NewBB :-)
 	 *
 	 */
-   public function update()
-    {
+   public function update($url)
+   {
         global $xoopsModule;
         /** @var \XoopsOnlineHandler $xoopsOnlineHandler */
         $xoopsOnlineHandler = xoops_getHandler('online');
         // set gc probabillity to 10% for now..
+		$db = new Db();
+		$title   = $db->moduleNameById($url);
+        $mbid    = $db->midByName($title);
+		$mbid	 = ($mbid != '') ? $mbid : $this->searchStringPart($url);
+        $count   = $db->CountMidByName($mbid);
         if (mt_rand(1, 100) < 60) {
             $xoopsOnlineHandler->gc(150);
         }
@@ -58,7 +76,7 @@ class Tools
             $uname = '';
             $name  = '';
         }
-        $xoopsupdate         = $xoopsOnlineHandler->write($uid, $uname, time(), $xoopsModule->getVar('mid'), \Xmf\IPAddress::fromRequest()->asReadable());
+        $xoopsupdate         = $xoopsOnlineHandler->write($uid, $uname, time(), $mbid, \Xmf\IPAddress::fromRequest()->asReadable());
         if (!$xoopsupdate) {
             //xoops_error("newbb online upate error");
         }
@@ -71,6 +89,7 @@ class Tools
     {
         global $xoopsUser, $xoopsModule;
 		$db = new Db();
+		$this->update($url);
         /* @var XoopsOnlineHandler $online_handler */
 		$start = 0;
         $online_handler = xoops_getHandler('online');
@@ -98,6 +117,10 @@ class Tools
         if (!empty($onlines)) {
             $title   = $db->moduleNameById($url);
             $mbid    = $db->midByName($title);
+			$mbid	 = ($mbid != '') ? $mbid : $this->searchStringPart($url);
+			if ($title == "") {
+				$title = $db->moduleNameByMid($mbid);
+			}
             $count   = $db->CountMidByName($mbid);
             $total   = count($onlines);
             $block   = [];
