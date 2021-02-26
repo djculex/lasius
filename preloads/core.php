@@ -33,10 +33,14 @@ class LasiusCorePreload extends \XoopsPreloadItem
 	
     public static function eventCoreHeaderAddmeta()
     {
-		
+		// initiate XoopsCache class
+		$xc = new \XoopsCache();
+		// Collect old cached to avoid double include script vars
+		$xc->gc();
+		$_SESSION["lasiusCoreEvents"] = 0;		
 		$tools = new Tools();
 		$tools->setJqueryScript();
-		$_SESSION["lasiusCoreEvents"] = null;		
+		
 	}
 
 }
