@@ -320,12 +320,12 @@ class Tools
 	
 	public function setJqueryScript()
 	{
-		if ($_SESSION["lasiusCoreEvents"] != "Done") { // Check $_session
+		if ($_SESSION["lasiusCoreEvents"] <= 0) { // Check $_session
 		global $xoopsConfig;
 		$helper = \XoopsModules\Lasius\Helper::getInstance();
-		$_SESSION["lasiusCoreEvents"] = "Done";
-		$Db = new Db();
 		
+		$Db = new Db();
+		$_SESSION["lasiusCoreEvents"] += 1;
 		$script = null;
 		$name = basename($_SERVER['REQUEST_URI']);
 		// language files
@@ -383,7 +383,9 @@ class Tools
 		}
 		$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/lasius/assets/js/agent.js');
 		$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/lasius/assets/js/lasius.js');
-		$GLOBALS['xoTheme']->addScript(null, array( 'type' => 'application/x-javascript' ), $script, 'lasiusCore');
+			if ($_SESSION["lasiusCoreEvents"] < 1) {
+				$GLOBALS['xoTheme']->addScript(null, array( 'type' => 'application/x-javascript' ), $script, 'lasiusCore');
+			}
 		}
 	}
 }
