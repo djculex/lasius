@@ -34,8 +34,8 @@ require_once __DIR__ . '/header.php';
 require_once $helper->path('include/functions.php');
 $GLOBALS['xoopsLogger']->activated = true;
 $Db = new Db();
-$configid        = Request::getString('configid', $default = '', $hash = 'default', $mask = 0);
-$configname		 = Request::getString('configname', $default = '', $hash = 'default', $mask = 0);
-$configvalue = Request::getInt('configvalue', $default = '', $hash = 'default', $mask = 0);
+$configid       = Request::getString('configid', $default = '', $hash = 'default', $mask = 0);
+$configname		= Request::getString('configname', $default = '', $hash = 'default', $mask = 0);
+$configvalue 	= Request::getInt('configvalue', $default = '', $hash = 'default', $mask = 0);
 
 $Db->setVar($configid, $configvalue, $type='save');

@@ -25,7 +25,7 @@ use XoopsModules\Lasius\{
  * @min_xoops      2.5.9
  * @author         Culex - Email:<culex@culex.dk> - Website:<http://culex.dk>
  */
-//$GLOBALS['xoopsOption']['template_main'] = 'lasius_admin_blocks.tpl';
+
 require __DIR__ . '/header.php';
 $GLOBALS['xoTheme']->addStylesheet($helper->url('assets/css/admin/style.css'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/admin.js'));
@@ -59,13 +59,9 @@ foreach ($tools->getBlockArray() as $k => $v) {
 $xoopsTpl->assign('timeInterval',$ti);
 $xoopsTpl->assign('selected',$si);
 $xoopsTpl->assign('activated',$ai);
-//$xoopsTpl->assign('timeInterval_', hoursRange( 0, 3600, 15 ));
-//$xoopsTpl->assign('selected_'.$v, $Db->getSetSelected($v));
-//var_dump('<pre>',$ai,'</pre>');
 
 // Get array of intervals to template
 $xoopsTpl->assign('timeInterval', hoursRange( 0, 3600, 15 ));
-//var_dump("<pre>", $all->getList($criteria = $s), "</pre>");
 $xoopsTpl->display('db:lasius_admin_blocks.tpl');
-//$GLOBALS['xoopsTpl']->assign('about', $adminObject->renderAbout(false));
+
 require __DIR__ . '/footer.php';

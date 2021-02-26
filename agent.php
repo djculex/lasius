@@ -79,6 +79,20 @@ switch ($type) {
 		$tpl->assign('block', $result);	
 		$tpl->display('db:system_block_comments.tpl');
         break;
+		
+	//User menu
+	case 'usermenu':
+		if (!file_exists(XOOPS_ROOT_PATH . '/modules/system/language/' . $language . '/blocks.php')) {
+			$language = 'english';
+		}
+		require_once XOOPS_ROOT_PATH . '/modules/system/language/' . $language . '/blocks.php';
+		$tpl = new XoopsTpl();
+		$tpl->caching = 0;
+		//$o = $Db->getBlockOptions('b_system_user_show');
+		$result = b_system_user_show();
+		$tpl->assign('block', $result);	
+		$tpl->display('db:system_block_user.tpl');
+        break;
 	
 	//publisher module
 	case 'recentpublisherarticles': 

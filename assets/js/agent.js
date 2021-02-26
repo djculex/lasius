@@ -21,6 +21,7 @@ jQuery( document ).ready(function() {
 			var interValStart_recentpublishernews = setInterval(SystemBlock_checkRecentPublisherNews, (Lasius_reviverecentpubnewsblock * 1000)); 
 			var interValStart_reviverecnewbbpostsblk = setInterval(SystemBlock_checkRecentNewBBPosts, (Lasius_reviverecentnewbbpostsblock * 1000)); 
 			var interValStart_reviverecentextcalminicalblocksblk = setInterval(SystemBlock_checkRecentExtCalMiniCal, (Lasius_reviverecentextcalminicalblock * 1000)); 
+			var interValStart_reviveusermenublocksblk = setInterval(SystemBlock_checkusermenu, (Lasius_reviveusermenublock * 1000)); 
 			
 			var mutationObserver = new MutationObserver(function(mutations) {
 			  mutations.forEach(function(mutation) {
@@ -59,6 +60,10 @@ jQuery( document ).ready(function() {
 				
 				if (!interValStart_reviverecentextcalminicalblocksblk) {
 					interValStart_reviverecentextcalminicalblocksblk = (Lasius_reviverecentextcalminicalblock > 0) ? setInterval(SystemBlock_checkRecentPublisherNews, (Lasius_reviverecentextcalminicalblock * 1000)) : interValStart_reviverecentextcalminicalblocksblk = undefined; 
+				}
+				
+				if (!interValStart_reviveusermenublocksblk) {
+					interValStart_reviveusermenublocksblk = (Lasius_reviveusermenublock > 0) ? setInterval(SystemBlock_checkusermenu, (Lasius_reviveusermenublock * 1000)) : interValStart_reviveusermenublocksblk = undefined; 
 				}
 			});
 
@@ -208,6 +213,21 @@ jQuery( document ).ready(function() {
 						
 						jQuery('aside h4.block-title:contains("' + Lasius_reviverecentextcalminicalblock_title + '")').parent("aside").load(Lasius_systemurl + "/agent.php?type=extcalminical", function() {
 							jQuery(this).prepend('<h4 class="block-title">' + Lasius_reviverecentextcalminicalblock_title + '</h4>');
+						}).fadeIn(1000);
+					}			
+			}
+			
+			
+			function SystemBlock_checkusermenu() {
+					this.interValStart_reviveusermenublocksblk = undefined; //reset interval	
+					if (Lasius_reviveusermenublock > 0) {
+						jQuery('div:contains("' + Lasius_reviveusermenublock_title + '")').next(".blockContent").load(Lasius_systemurl + "/agent.php?type=usermenu", function() {
+						console.log('replace  usermenu.');
+						console.log(Lasius_systemurl + "/agent.php?type=usermenu");
+						}).fadeIn(1000);
+						
+						jQuery('aside h4.block-title:contains("' + Lasius_reviveusermenublock_title + '")').parent("aside").load(Lasius_systemurl + "/agent.php?type=usermenu", function() {
+							jQuery(this).prepend('<h4 class="block-title">' + Lasius_reviveusermenublock_title + '</h4>');
 						}).fadeIn(1000);
 					}			
 			}

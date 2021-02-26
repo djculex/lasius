@@ -31,7 +31,8 @@ class Tools
 			$db->getBlockTitle('publisher_items_recent_show'),
 			$db->getBlockTitle('publisher_latest_news_show'),
 			$db->getBlockTitle('b_newbb_post_show'),
-			$db->getBlockTitle('bExtcalMinicalShow')
+			$db->getBlockTitle('bExtcalMinicalShow'),
+			$db->getBlockTitle('b_system_user_show')
 		);
 		return $array;
 	}
@@ -320,7 +321,7 @@ class Tools
 	
 	public function setJqueryScript()
 	{
-		if ($_SESSION["lasiusCoreEvents"] <= 0) { // Check $_session
+		if ($_SESSION["lasiusCoreEvents"] < 1) { // Check $_session
 		global $xoopsConfig;
 		$helper = \XoopsModules\Lasius\Helper::getInstance();
 		
@@ -366,6 +367,9 @@ class Tools
 		$script  .= 'var Lasius_reviverecentextcalminicalblock = ' . $Db->getSetSelected($Db->getBlockName('bExtcalMinicalShow')) . ";\n";
 		$script  .= "var Lasius_reviverecentextcalminicalblock_title = '" . $Db->getBlockTitle('bExtcalMinicalShow') . "';\n";
 		
+		$script  .= 'var Lasius_reviveusermenublock = ' . $Db->getSetSelected($Db->getBlockName('b_system_user_show')) . ";\n";
+		$script  .= "var Lasius_reviveusermenublock_title = '" . $Db->getBlockTitle('b_system_user_show') . "';\n";
+		
 		$script  .= '};' . "\n";
 		//$script  .= "});"."\n";
 		
@@ -383,7 +387,8 @@ class Tools
 		}
 		$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/lasius/assets/js/agent.js');
 		$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/lasius/assets/js/lasius.js');
-			if ($_SESSION["lasiusCoreEvents"] < 1) {
+			if ($_SESSION["lasiusCoreEvents"] <= 1) {
+				//echo "inserted : ".$_SESSION["lasiusCoreEvents"];
 				$GLOBALS['xoTheme']->addScript(null, array( 'type' => 'application/x-javascript' ), $script, 'lasiusCore');
 			}
 		}
