@@ -170,8 +170,7 @@ switch ($type) {
 		$result = bExtcalUpcomingShow($o);
 		$tpl->assign('block', $result);	
 		$tpl->display('db:extcal_block_upcoming.tpl');
-        break;
-		
+        break;		
 }
 
 $GLOBALS['xoopsLogger']->activated = false;
