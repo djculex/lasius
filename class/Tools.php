@@ -32,7 +32,8 @@ class Tools
 			$db->getBlockTitle('publisher_latest_news_show'),
 			$db->getBlockTitle('b_newbb_post_show'),
 			$db->getBlockTitle('bExtcalMinicalShow'),
-			$db->getBlockTitle('b_system_user_show')
+			$db->getBlockTitle('b_system_user_show'),
+			$db->getBlockTitle('bExtcalUpcomingShow')
 		);
 		return $array;
 	}
@@ -321,7 +322,7 @@ class Tools
 	
 	public function setJqueryScript()
 	{
-		if ($_SESSION["lasiusCoreEvents"] < 1) { // Check $_session
+		if ($_SESSION["lasiusCoreEvents"] == 0) { // Check $_session
 		global $xoopsConfig;
 		$helper = \XoopsModules\Lasius\Helper::getInstance();
 		
@@ -370,6 +371,9 @@ class Tools
 		$script  .= 'var Lasius_reviveusermenublock = ' . $Db->getSetSelected($Db->getBlockName('b_system_user_show')) . ";\n";
 		$script  .= "var Lasius_reviveusermenublock_title = '" . $Db->getBlockTitle('b_system_user_show') . "';\n";
 		
+		$script  .= 'var Lasius_reviveextcalupceventsblock = ' . $Db->getSetSelected($Db->getBlockName('bExtcalUpcomingShow')) . ";\n";
+		$script  .= "var Lasius_reviveextcalupceventsblock_title = '" . $Db->getBlockTitle('bExtcalUpcomingShow') . "';\n";
+		
 		$script  .= '};' . "\n";
 		//$script  .= "});"."\n";
 		
@@ -385,12 +389,12 @@ class Tools
 		if ($helper->getConfig('updatejqueryui') > 0) {
 			$GLOBALS['xoTheme']->addScript('browse.php?Frameworks/jquery/plugins/jquery.ui.js');
 		}
-		$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/lasius/assets/js/agent.js');
-		$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/lasius/assets/js/lasius.js');
 			if ($_SESSION["lasiusCoreEvents"] <= 1) {
 				//echo "inserted : ".$_SESSION["lasiusCoreEvents"];
 				$GLOBALS['xoTheme']->addScript(null, array( 'type' => 'application/x-javascript' ), $script, 'lasiusCore');
 			}
 		}
+		$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/lasius/assets/js/agent.js');
+		$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/lasius/assets/js/lasius.js');
 	}
 }

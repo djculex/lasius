@@ -157,6 +157,21 @@ switch ($type) {
 		$tpl->display('db:extcal_block_minical.tpl');
         break;
 		
+	//Upcommin events extCal	
+	case 'upcevents': 
+		if (!file_exists(XOOPS_ROOT_PATH . '/modules/extcal/language/' . $language . '/blocks.php')) {
+			$language = 'english';
+		}
+		require_once XOOPS_ROOT_PATH .'/modules/extcal/blocks/upcoming.php';
+		require_once XOOPS_ROOT_PATH . '/modules/extcal/language/' . $language . '/blocks.php';
+		$tpl = new XoopsTpl();
+		$tpl->caching = 0;
+		$o = $Db->getBlockOptions('bExtcalUpcomingShow');
+		$result = bExtcalUpcomingShow($o);
+		$tpl->assign('block', $result);	
+		$tpl->display('db:extcal_block_upcoming.tpl');
+        break;
+		
 }
 
 $GLOBALS['xoopsLogger']->activated = false;

@@ -22,6 +22,7 @@ jQuery( document ).ready(function() {
 			var interValStart_reviverecnewbbpostsblk = setInterval(SystemBlock_checkRecentNewBBPosts, (Lasius_reviverecentnewbbpostsblock * 1000)); 
 			var interValStart_reviverecentextcalminicalblocksblk = setInterval(SystemBlock_checkRecentExtCalMiniCal, (Lasius_reviverecentextcalminicalblock * 1000)); 
 			var interValStart_reviveusermenublocksblk = setInterval(SystemBlock_checkusermenu, (Lasius_reviveusermenublock * 1000)); 
+			var interValStart_reviveextcalupceventsblocksblk = setInterval(ExtcalBlock_upcomingEvents, (Lasius_reviveextcalupceventsblock * 1000)); 
 			
 			var mutationObserver = new MutationObserver(function(mutations) {
 			  mutations.forEach(function(mutation) {
@@ -64,6 +65,10 @@ jQuery( document ).ready(function() {
 				
 				if (!interValStart_reviveusermenublocksblk) {
 					interValStart_reviveusermenublocksblk = (Lasius_reviveusermenublock > 0) ? setInterval(SystemBlock_checkusermenu, (Lasius_reviveusermenublock * 1000)) : interValStart_reviveusermenublocksblk = undefined; 
+				}
+				
+				if (!interValStart_reviveextcalupceventsblocksblk) {
+					interValStart_reviveextcalupceventsblocksblk = (Lasius_reviveextcalupceventsblock > 0) ? setInterval(ExtcalBlock_upcomingEvents, (Lasius_reviveextcalupceventsblock * 1000)) : interValStart_reviveextcalupceventsblocksblk = undefined; 
 				}
 			});
 
@@ -231,6 +236,21 @@ jQuery( document ).ready(function() {
 						}).fadeIn(1000);
 					}			
 			}
+
+			function ExtcalBlock_upcomingEvents() {
+				this.interValStart_reviveextcalupceventsblocksblk = undefined; //reset interval	
+				if (Lasius_reviveextcalupceventsblock > 0) {
+					jQuery('div:contains("' + Lasius_reviveextcalupceventsblock_title + '")').next(".blockContent").load(Lasius_systemurl + "/agent.php?type=upcevents", function() {
+					console.log('replace  upcevents.');
+					console.log(Lasius_systemurl + "/agent.php?type=upcevents");
+					}).fadeIn(1000);
+					
+					jQuery('aside h4.block-title:contains("' + Lasius_reviveextcalupceventsblock_title + '")').parent("aside").load(Lasius_systemurl + "/agent.php?type=upcevents", function() {
+						jQuery(this).prepend('<h4 class="block-title">' + Lasius_reviveextcalupceventsblock_title + '</h4>');
+					}).fadeIn(1000);
+				}			
+			}
+			
 			
 	});
 });
