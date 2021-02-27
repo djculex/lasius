@@ -80,11 +80,8 @@ class Tools
         }
         $xoopsupdate         = $xoopsOnlineHandler->write($uid, $uname, time(), $mbid, \Xmf\IPAddress::fromRequest()->asReadable());
         if (!$xoopsupdate) {
-            //xoops_error("newbb online upate error");
+            //xoops_error("Lasius write error");
         }
-
-        //$uname = (empty($GLOBALS['xoopsModuleConfig']['show_realname']) || empty($name)) ? $uname : $name;
-        //$this->write($uid, $uname, time(), $this->forum_id, IPAddress::fromRequest()->asReadable(), $this->topic_id);
     }
 
     public function b_system_online_show($url)
