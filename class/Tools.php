@@ -34,7 +34,7 @@ class Tools
 			$db->getBlockTitle('bExtcalMinicalShow'),			// Show calandar ExtCal block
 			$db->getBlockTitle('b_system_user_show'),			// Show user menu block
 			$db->getBlockTitle('bExtcalUpcomingShow'),			// Upcoming events ExtCal block
-			$db->getBlockTitle('b_news_top_show')				// Latest news News block
+			'Recent news'										// *Hack * Latest news News block *TODO find better way *
 		);
 		return $array;
 	}
@@ -373,7 +373,7 @@ class Tools
 		$script  .= "var Lasius_reviveextcalupceventsblock_title = '" . $Db->getBlockTitle('bExtcalUpcomingShow') . "';\n";
 		
 		$script  .= 'var Lasius_revivenewslatestnewsblock = ' . $Db->getSetSelected($Db->getBlockName('b_news_top_show')) . ";\n";
-		$script  .= "var Lasius_revivenewslatestnewsblock_title = '" . $Db->getBlockTitle('b_news_top_show') . "';\n";
+		$script  .= "var Lasius_revivenewslatestnewsblock_title = '" . $Db->getBlockTitleFromName('Recent news') . "';\n";
 		
 		$script  .= '};' . "\n";
 		//$script  .= "});"."\n";
