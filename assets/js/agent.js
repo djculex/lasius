@@ -23,6 +23,7 @@ jQuery( document ).ready(function() {
 			var interValStart_reviverecentextcalminicalblocksblk = setInterval(SystemBlock_checkRecentExtCalMiniCal, (Lasius_reviverecentextcalminicalblock * 1000)); 
 			var interValStart_reviveusermenublocksblk = setInterval(SystemBlock_checkusermenu, (Lasius_reviveusermenublock * 1000)); 
 			var interValStart_reviveextcalupceventsblocksblk = setInterval(ExtcalBlock_upcomingEvents, (Lasius_reviveextcalupceventsblock * 1000)); 
+			var interValStart_revivenewslatestnewsblocksblk = setInterval(NewsBlock_LatestNews, (Lasius_revivenewslatestnewsblock * 1000)); 
 			
 			var mutationObserver = new MutationObserver(function(mutations) {
 			  mutations.forEach(function(mutation) {
@@ -69,6 +70,11 @@ jQuery( document ).ready(function() {
 				
 				if (!interValStart_reviveextcalupceventsblocksblk) {
 					interValStart_reviveextcalupceventsblocksblk = (Lasius_reviveextcalupceventsblock > 0) ? setInterval(ExtcalBlock_upcomingEvents, (Lasius_reviveextcalupceventsblock * 1000)) : interValStart_reviveextcalupceventsblocksblk = undefined; 
+				}
+				
+				if (!interValStart_revivenewslatestnewsblocksblk) {
+					console.log("Latest news = " + Lasius_revivenewslatestnewsblock);
+					interValStart_revivenewslatestnewsblocksblk = (Lasius_revivenewslatestnewsblock > 0) ? setInterval(SystemBlock_checkOnlineUsers, (Lasius_revivenewslatestnewsblock * 1000)):interValStart_revivenewslatestnewsblocksblk = undefined; 
 				}
 			});
 
@@ -247,6 +253,20 @@ jQuery( document ).ready(function() {
 					
 					jQuery('aside h4.block-title:contains("' + Lasius_reviveextcalupceventsblock_title + '")').parent("aside").load(Lasius_systemurl + "/agent.php?type=upcevents", function() {
 						jQuery(this).prepend('<h4 class="block-title">' + Lasius_reviveextcalupceventsblock_title + '</h4>');
+					}).fadeIn(1000);
+				}			
+			}
+			
+			function NewsBlock_LatestNews() {
+				this.interValStart_revivenewslatestnewsblocksblk = undefined; //reset interval	
+				if (Lasius_revivenewslatestnewsblock > 0) {
+					jQuery('div:contains("' + Lasius_revivenewslatestnewsblock_title + '")').next(".blockContent").load(Lasius_systemurl + "/agent.php?type=newsrecentnews", function() {
+					console.log('replace  newsrecentnews.');
+					console.log(Lasius_systemurl + "/agent.php?type=newsrecentnews");
+					}).fadeIn(1000);
+					
+					jQuery('aside h4.block-title:contains("' + Lasius_revivenewslatestnewsblock_title + '")').parent("aside").load(Lasius_systemurl + "/agent.php?type=newsrecentnews", function() {
+						jQuery(this).prepend('<h4 class="block-title">' + Lasius_revivenewslatestnewsblock_title + '</h4>');
 					}).fadeIn(1000);
 				}			
 			}

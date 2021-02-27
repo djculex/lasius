@@ -24,16 +24,17 @@ class Tools
 	{
 		$db = new Db();
 		$array = array(
-			$db->getBlockTitle('b_system_online_show'),
-			$db->getBlockTitle('b_system_topposters_show'),
-			$db->getBlockTitle('b_system_newmembers_show'),
-			$db->getBlockTitle('b_system_comments_show'),
-			$db->getBlockTitle('publisher_items_recent_show'),
-			$db->getBlockTitle('publisher_latest_news_show'),
-			$db->getBlockTitle('b_newbb_post_show'),
-			$db->getBlockTitle('bExtcalMinicalShow'),
-			$db->getBlockTitle('b_system_user_show'),
-			$db->getBlockTitle('bExtcalUpcomingShow')
+			$db->getBlockTitle('b_system_online_show'), 		// online users block
+			$db->getBlockTitle('b_system_topposters_show'),		// Top posters block
+			$db->getBlockTitle('b_system_newmembers_show'),		// New members block
+			$db->getBlockTitle('b_system_comments_show'),		// Comments show block
+			$db->getBlockTitle('publisher_items_recent_show'),	// Latest articles publisher block
+			$db->getBlockTitle('publisher_latest_news_show'),	// Latest news publisher block
+			$db->getBlockTitle('b_newbb_post_show'),			// Latest posts NewBB block
+			$db->getBlockTitle('bExtcalMinicalShow'),			// Show calandar ExtCal block
+			$db->getBlockTitle('b_system_user_show'),			// Show user menu block
+			$db->getBlockTitle('bExtcalUpcomingShow'),			// Upcoming events ExtCal block
+			$db->getBlockTitle('b_news_top_show')				// Latest news News block
 		);
 		return $array;
 	}
@@ -371,6 +372,9 @@ class Tools
 		$script  .= 'var Lasius_reviveextcalupceventsblock = ' . $Db->getSetSelected($Db->getBlockName('bExtcalUpcomingShow')) . ";\n";
 		$script  .= "var Lasius_reviveextcalupceventsblock_title = '" . $Db->getBlockTitle('bExtcalUpcomingShow') . "';\n";
 		
+		$script  .= 'var Lasius_revivenewslatestnewsblock = ' . $Db->getSetSelected($Db->getBlockName('b_news_top_show')) . ";\n";
+		$script  .= "var Lasius_revivenewslatestnewsblock_title = '" . $Db->getBlockTitle('b_news_top_show') . "';\n";
+		
 		$script  .= '};' . "\n";
 		//$script  .= "});"."\n";
 		
@@ -388,7 +392,7 @@ class Tools
 		}
 			if ($_SESSION["lasiusCoreEvents"] <= 1) {
 				//echo "inserted : ".$_SESSION["lasiusCoreEvents"];
-				$GLOBALS['xoTheme']->addScript(null, array( 'type' => 'application/x-javascript' ), $script, 'lasiusCore');
+				$GLOBALS['xoTheme']->addScript(null, array( 'type' => 'text/javascript' ), $script, 'lasiusCore');
 			}
 		}
 		$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/lasius/assets/js/agent.js');
