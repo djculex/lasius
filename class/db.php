@@ -82,10 +82,11 @@ class Db extends \XoopsPersistableObjectHandler
 		$sum = 0;
 		$sql = 'SELECT configvalue FROM ' . $this->db->prefix('lasius_config') . ' WHERE configname = "' . $name . '"';
 		$result = $this->db->queryF($sql);
+		$counter = $this->db->getRowsNum($result);
         while ($row = $this->db->fetchArray($result)) {
             $sum = $row['configvalue'];
         }
-        if ('' == $sum) {
+        if ($counter <= 0) {
             $sum = 0;
         }
         return $sum;
@@ -109,7 +110,7 @@ class Db extends \XoopsPersistableObjectHandler
     {
         $data = [];
         //SELECT title FROM `xoops2511_newblocks` WHERE `show_func` = "b_system_online_show"
-        $query   = 'SELECT title FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE show_func = '" . addslashes($showfunc) . "' ORDER BY title ASC ";
+        $query   = 'SELECT title FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE show_func = '" . addslashes($showfunc) . "' AND visible=1 ORDER BY title ASC ";
         $result  = $GLOBALS['xoopsDB']->queryF($query);
         $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
         if ($counter >= 1) {
@@ -124,7 +125,7 @@ class Db extends \XoopsPersistableObjectHandler
     {
         $data = [];
         //SELECT title FROM `xoops2511_newblocks` WHERE `show_func` = "b_system_online_show"
-        $query   = 'SELECT name FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE show_func = '" . addslashes($showfunc) . "' ORDER BY name ASC ";
+        $query   = 'SELECT name FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE show_func = '" . addslashes($showfunc) . "' AND visible=1 ORDER BY name ASC ";
         $result  = $GLOBALS['xoopsDB']->queryF($query);
         $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
         if ($counter >= 1) {
@@ -138,7 +139,7 @@ class Db extends \XoopsPersistableObjectHandler
 	public function getBlockTitleFromId($id)
     {
         $data = [];
-        $query   = 'SELECT name FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE bid = " . addslashes($id) . " ORDER BY name ASC ";
+        $query   = 'SELECT name FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE bid = " . addslashes($id) . " AND visible=1 ORDER BY name ASC ";
         $result  = $GLOBALS['xoopsDB']->queryF($query);
         $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
         if ($counter >= 1) {
@@ -152,7 +153,7 @@ class Db extends \XoopsPersistableObjectHandler
 	public function getBlockTitleFromName($name)
     {
         $data = [];
-        $query   = 'SELECT title FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE name = '" . addslashes($name) . "' ORDER BY title ASC ";
+        $query   = 'SELECT title FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE name = '" . addslashes($name) . "' AND visible=1 ORDER BY title ASC ";
         $result  = $GLOBALS['xoopsDB']->queryF($query);
         $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
         if ($counter >= 1) {
@@ -166,7 +167,7 @@ class Db extends \XoopsPersistableObjectHandler
 	public function getBlockNameFromTitle($title)
     {
         $data = [];
-        $query   = 'SELECT name FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE title = '" . addslashes($title) . "' ORDER BY name ASC ";
+        $query   = 'SELECT name FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE title = '" . addslashes($title) . "' AND visible=1 ORDER BY name ASC ";
         $result  = $GLOBALS['xoopsDB']->queryF($query);
         $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
         if ($counter >= 1) {
@@ -181,7 +182,7 @@ class Db extends \XoopsPersistableObjectHandler
     {
         $data = [];
         //SELECT title FROM `xoops2511_newblocks` WHERE `show_func` = "b_system_online_show"
-        $query   = 'SELECT options FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE show_func = '" . addslashes($showfunc) . "' ORDER BY options ASC ";
+        $query   = 'SELECT options FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE show_func = '" . addslashes($showfunc) . "' AND visible=1 ORDER BY options ASC ";
         $result  = $GLOBALS['xoopsDB']->queryF($query);
         $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
         if ($counter >= 1) {
@@ -197,7 +198,7 @@ class Db extends \XoopsPersistableObjectHandler
         $n = '';
         $s = ($dir == 'htdocs') ? 'system' : $dir;
         //SELECT name FROM `xoops2511_modules` WHERE `mid` = 10
-        $query   = 'SELECT name FROM ' . $GLOBALS['xoopsDB']->prefix('modules') . " WHERE dirname = '" . addslashes($s) . "' ORDER BY name ASC ";
+        $query   = 'SELECT name FROM ' . $GLOBALS['xoopsDB']->prefix('modules') . " WHERE dirname = '" . addslashes($s) . "' AND visible=1 ORDER BY name ASC ";
         $result  = $GLOBALS['xoopsDB']->queryF($query);
         $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
         if ($counter >= 1) {
@@ -211,7 +212,7 @@ class Db extends \XoopsPersistableObjectHandler
 	public function moduleNameByMid($id)
     {
         //SELECT name FROM `xoops2511_modules` WHERE `mid` = 10
-        $query   = 'SELECT name FROM ' . $GLOBALS['xoopsDB']->prefix('modules') . " WHERE mid = " . addslashes($id) . " ORDER BY name ASC ";
+        $query   = 'SELECT name FROM ' . $GLOBALS['xoopsDB']->prefix('modules') . " WHERE mid = " . addslashes($id) . " AND visible=1 ORDER BY name ASC ";
         $result  = $GLOBALS['xoopsDB']->queryF($query);
         $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
         if ($counter >= 1) {
@@ -226,7 +227,7 @@ class Db extends \XoopsPersistableObjectHandler
     {
         $n = '';
         //SELECT name FROM `xoops2511_modules` WHERE `mid` = 10
-        $query   = 'SELECT mid FROM ' . $GLOBALS['xoopsDB']->prefix('modules') . " WHERE name = '" . addslashes($name) . "' ORDER BY mid ASC ";
+        $query   = 'SELECT mid FROM ' . $GLOBALS['xoopsDB']->prefix('modules') . " WHERE name = '" . addslashes($name) . "' AND visible=1 ORDER BY mid ASC ";
         $result  = $GLOBALS['xoopsDB']->queryF($query);
         $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
         if ($counter >= 1) {
@@ -239,7 +240,7 @@ class Db extends \XoopsPersistableObjectHandler
 
     public function CountMidByName($mbid)
     {
-        $query  = 'SELECT count(*) FROM ' . $GLOBALS['xoopsDB']->prefix('modules') . " WHERE mid = '" . addslashes($mbid) . "'";
+        $query  = 'SELECT count(*) FROM ' . $GLOBALS['xoopsDB']->prefix('modules') . " WHERE mid = '" . addslashes($mbid) . "' AND visible=1";
         $result = $GLOBALS['xoopsDB']->queryF($query);
         return $GLOBALS['xoopsDB']->getRowsNum($result);
     }
