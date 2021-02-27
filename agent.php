@@ -22,13 +22,15 @@
 use Xmf\Request;
 use XoopsModules\Lasius\{
 	Tools,
-	Db
+	Db,
+	Helper
 };
+include __DIR__ . '/preloads/autoloader.php';
 
 require_once dirname(__DIR__,2) . '/mainfile.php';
 require_once XOOPS_ROOT_PATH . '/class/template.php';
 include_once XOOPS_ROOT_PATH .'/modules/system/blocks/system_blocks.php';
-
+$helper = Helper::getInstance();
 // Type of block ("onlinenow", "topposters") etc
 $type = Request::getString('type', '', 'GET');
 // Name of module user is watching
@@ -90,6 +92,7 @@ switch ($type) {
 		$tpl->caching = 0;
 		//$o = $Db->getBlockOptions('b_system_user_show');
 		$result = b_system_user_show();
+		$tpl->assign('xoops_isadmin', $helper->isUserAdmin() ? 1 : 0);
 		$tpl->assign('block', $result);	
 		$tpl->display('db:system_block_user.tpl');
         break;
