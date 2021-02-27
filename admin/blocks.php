@@ -56,6 +56,7 @@ foreach ($tools->getBlockArray() as $k => $v) {
 	$si[$v] = $Db->getSetSelected($Db->getBlockNameFromTitle($v));
 	$ai[$v] = $Db->getSetActivated($Db->getBlockNameFromTitle($v));
 }
+
 $xoopsTpl->assign('timeInterval',$ti);
 $xoopsTpl->assign('selected',$si);
 $xoopsTpl->assign('activated',$ai);
