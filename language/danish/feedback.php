@@ -12,31 +12,31 @@
 /**
  * feedback plugin for xoops modules
  *
- * @copyright      module for xoops
- * @license        GPL 2.0 or later
+ * @copyright      Lasius module for xoops
+ * @license        GPL 3.0 or later
  * @package        general
  * @since          1.0
- * @min_xoops      2.5.9
+ * @min_xoops      2.5.11+
  * @author         XOOPS - Website:<https://xoops.org>
  */
 $moduleDirName      = \basename(dirname(__DIR__, 2));
 $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
-\define('CO_' . $moduleDirNameUpper . '_' . 'FB_FORM_TITLE', 'Send a feedback');
-\define('CO_' . $moduleDirNameUpper . '_' . 'FB_RECIPIENT', 'Recipient');
-\define('CO_' . $moduleDirNameUpper . '_' . 'FB_NAME', 'Name');
-\define('CO_' . $moduleDirNameUpper . '_' . 'FB_NAME_PLACEHOLER', 'Please enter your name');
-\define('CO_' . $moduleDirNameUpper . '_' . 'FB_SITE', 'Website');
-\define('CO_' . $moduleDirNameUpper . '_' . 'FB_SITE_PLACEHOLER', 'Please enter your website');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_FORM_TITLE', 'Send feedback');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_RECIPIENT', 'Modtager');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_NAME', 'Navn');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_NAME_PLACEHOLER', 'Skriv dit navn');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_SITE', 'Webside');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_SITE_PLACEHOLER', 'Skriv din webside');
 \define('CO_' . $moduleDirNameUpper . '_' . 'FB_MAIL', 'Email');
-\define('CO_' . $moduleDirNameUpper . '_' . 'FB_MAIL_PLACEHOLER', 'Please enter your email');
-\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE', 'Type of feedback');
-\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_SUGGESTION', 'Suggestions');
-\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_BUGS', 'Bugs');
-\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_TESTIMONIAL', 'Testimonials');
-\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_FEATURES', 'Features');
-\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_OTHERS', 'Misc');
-\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_CONTENT', 'Feedback content');
-\define('CO_' . $moduleDirNameUpper . '_' . 'FB_SEND_FOR', 'Feedback for module ');
-\define('CO_' . $moduleDirNameUpper . '_' . 'FB_SEND_SUCCESS', 'Feedback successfully sent');
-\define('CO_' . $moduleDirNameUpper . '_' . 'FB_SEND_ERROR', 'An errror occured when feedback was sent!');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_MAIL_PLACEHOLER', 'Skriv din email');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE', 'Type på feedback');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_SUGGESTION', 'Forslag');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_BUGS', 'Fejl');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_TESTIMONIAL', 'Udtalelser');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_FEATURES', 'Funktioner');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_OTHERS', 'Andet');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_CONTENT', 'Feedback indhold');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_SEND_FOR', 'Feedback for modul ');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_SEND_SUCCESS', 'Feedback blev sendt');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_SEND_ERROR', 'Der opstod en fejl, da feedback blev sendt!');
