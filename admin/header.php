@@ -30,7 +30,7 @@ use XoopsModules\Lasius\{
 /** @var Admin $adminObject */
 /** @var Helper $helper */
 
-//require dirname(__DIR__) . '/preloads/autoloader.php';
+require dirname(__DIR__) . '/preloads/autoloader.php';
 
 include dirname(__DIR__, 3) . '/include/cp_header.php';
 include_once \dirname(__DIR__) . '/include/common.php';

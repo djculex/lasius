@@ -35,7 +35,7 @@ define('_MI_LASIUS_ABOUT', 'Om');
 define('_MI_LASIUS_ADMENU3', 'Blockindstillinger');
 // Config
 define('_MI_LASIUS_KEYWORDS', 'Nøgleord');
-define('_MI_LASIUS_KEYWORDS_DESC', 'Indsæt her dine nøgleord (adskil med ',' komma)');
+define('_MI_LASIUS_KEYWORDS_DESC', 'Indsæt her dine nøgleord (adskil med "," komma)');
 define('_MI_LASIUS_NUMB_COL', 'Antal søjler');
 define('_MI_LASIUS_NUMB_COL_DESC', 'Antal søjler der skal ses.');
 define('_MI_LASIUS_DIVIDEBY', 'Divider med');

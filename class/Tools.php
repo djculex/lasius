@@ -335,7 +335,7 @@ class Tools
 		//$script = "jQuery(document).ready(function(){"."\n";
 		//$script  .= 'var Lasius_myID;' . "\n";
 		
-        $script   = "if (typeof Lasius_myID === 'undefined') {"."\n";
+        $script   = "if (typeof Lasius_myID === 'undefined' || typeof Lasius_myID === '') {"."\n";
         $script  .= "var Lasius_systemurl = '" . XOOPS_URL . "/modules/lasius';\n";
 		
 		$script  .= "var Lasius_myID = 1;\n";
