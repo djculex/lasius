@@ -14,7 +14,6 @@ jQuery(document).ready(function () {
 					// remove part of user id links that opens pop-up
 					var url = this.href;
 					var newurl = url.replace("javascript:openWithSelfMain('", "").replace("','Online',420,350);","");
-				
 				// initiate jquery UI dialog
 				jQuery('<div id="lasius_ou">').dialog({			
 					modal: false,
@@ -34,6 +33,15 @@ jQuery(document).ready(function () {
 								jQuery(this).attr("href", nu);
 							});
 							
+							// iterate all ips and make them links
+							jQuery("#lasius_ou td").each(function() {
+								var result = jQuery(this).text().match(/\(([^)]+)\)/);
+								if (result != null) {
+									var replaced = $(this).html().replace(/\(([^)]+)\)/,'<a href="https://whatismyipaddress.com/ip/$1" target="_blank">$1</a>');
+									$(this).html(replaced);
+								}
+							});
+							
 						}).fadeIn(2000); // fade in new mainupulated html
 					},
 					title: Lasius_reviveonlineusersblock_title // set dialog title			
@@ -41,6 +49,7 @@ jQuery(document).ready(function () {
 					return false;
 			}
 			// ---- end ----
+			
 		});
 	}
 
