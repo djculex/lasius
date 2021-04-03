@@ -379,11 +379,27 @@ class Tools
 		//$script  .= "});"."\n";
 		
 		// Include jquery new or framework ?
+		$jq  = "if(jQuery.fn.jquery.split('.')" . "\n";
+		$jq .= ".map(function(i){return('0'+i).slice(-2)})" . "\n";
+		$jq .= "		.join('.') > '01.08.03')" . "\n";
+		$jq .= "	{" . "\n";
+		$jq .= "		alert('yes');" . "\n";
+		$jq .= "	}" . "\n";
+		$jq .= "	else" . "\n";
+		$jq .= "	{" . "\n";
+		$jq .= "		alert('no');" . "\n";
+		$jq .= "		var script = document.createElement('script');" . "\n";
+		$jq .= "		script.src = 'https://code.jquery.com/jquery-latest.min.js';" . "\n";
+		$jq .= "		script.type = 'text/javascript';" . "\n";
+		$jq .= "		document.getElementsByTagName('head')[0].appendChild(script);" . "\n";
+		$jq .= "	};";
+		
 		
 		if ($helper->getConfig('updatejquery') > 0) {
 			$GLOBALS['xoTheme']->addScript('https://code.jquery.com/jquery-latest.min.js');
 		} else {
 			$GLOBALS['xoTheme']->addScript('browse.php?Frameworks/jquery/jquery.js');
+			//$GLOBALS['xoTheme']->addScript(null, array( 'type' => 'text/javascript' ), $jq, 'CheckJquery');
 		}
 		
 		// Jquery ui
