@@ -49,9 +49,16 @@ switch ($type) {
 			$tpl = new \XoopsTpl();
 			$tpl->caching = 0;
 			$result = $tools->b_system_online_show($name);
+			$users = $tools->getOnlineUsers();
 			$tpl->assign('block', $result);	
+			if ($helper->getConfig('LASIUSUSEDIALOG') > 0) {
+				$tpl->assign('blockhidden', $users);
+				$tpl->display(XOOPS_ROOT_PATH . "/modules/lasius/templates/blocks/lasius_system_block_online.tpl");				
+			} else {
+				$tpl->display('db:system_block_online.tpl');
+			}
 			//$tpl->display(XOOPS_ROOT_PATH . "/modules/system/templates/blocks/system_block_online.tpl");
-			$tpl->display('db:system_block_online.tpl');
+			
 			break;
 		
 		// Top posters
