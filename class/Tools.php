@@ -89,6 +89,7 @@ class Tools
     {
         global $xoopsUser, $xoopsModule;
 		$db = new Db();
+		$helper = \XoopsModules\Lasius\Helper::getInstance();
 		$this->update($url);
         /* @var XoopsOnlineHandler $online_handler */
 		$start = 0;
@@ -144,12 +145,72 @@ class Tools
             $block['online_members'] = $total - $guests;
             $block['online_guests']  = $guests;
             $block['lang_more']      = _MORE;
+			$block['takeoverlinks']  = $helper->getConfig('LASIUSUSEDIALOG');
             //print_r($block);
             return $block;
         } else {
             return false;
         }
     }
+	
+	public function getOnlineUsers()
+	{
+		$isadmin = $xoopsUserIsAdmin;
+		$start = 0;
+		/* @var XoopsOnlineHandler $online_handler */
+		$online_handler = xoops_getHandler('online');
+		$online_total = $online_handler->getCount();
+		$limit = ($online_total > 2000) ? 20 : $online_total;
+		$criteria = new \CriteriaCompo();
+		$criteria->setLimit($limit);
+		$criteria->setStart($start);
+		$onlines = $online_handler->getAll($criteria);
+		$count = count($onlines);
+		/* @var XoopsModuleHandler $module_handler */
+		$module_handler = xoops_getHandler('module');
+		$modules = $module_handler->getList(new \Criteria('isactive', 1));
+		for ($i = 0; $i < $count; ++$i) {
+			if ($onlines[$i]['online_uid'] == 0) {
+				$onlineUsers[$i]['user'] = '';
+			} else {
+				$onlineUsers[$i]['user'] =  new \XoopsUser($onlines[$i]['online_uid']);
+			}
+			$onlineUsers[$i]['ip'] = $onlines[$i]['online_ip'];
+			$onlineUsers[$i]['ipinfo'] = $this->lookupIp($onlineUsers[$i]['ip']);
+			
+			$onlineUsers[$i]['updated'] = $onlines[$i]['online_updated'];
+			$onlineUsers[$i]['module'] = ($onlines[$i]['online_module'] > 0) ? $modules[$onlines[$i]['online_module']] : '';
+			$onlineUsers[$i]['flaghtml'] = '<img class="lasius-online-flag" src = "https://www.verdensflag.dk/data/flags/h80/' .  strtolower($onlineUsers[$i]['ipinfo']['countryCode']) . '.webp" alt="' . $onlineUsers[$i]['ipinfo']['country'] . '" />';
+		}
+		$class = 'even';
+		for ($i = 0; $i < $count; ++$i) {
+			$class = ($class === 'odd') ? 'even' : 'odd';
+			if (is_object($onlineUsers[$i]['user'])) {
+				$onlineUsers[$i]['useravatar'] = $onlineUsers[$i]['user']->getVar('user_avatar') ? '<img class="lasius-online-avatar" src="' . XOOPS_UPLOAD_URL . '/' . $onlineUsers[$i]['user']->getVar('user_avatar') . '" alt="" />' : '&nbsp;';
+				$onlineUsers[$i]['username'] = $onlineUsers[$i]['user']->getVar('uname');
+			} else {
+				$onlineUsers[$i]['useravatar'] = '<img class="lasius-online-avatar" src="' .XOOPS_URL. '/modules/lasius/assets/images/unknownuser.png" alt="" />';
+				$onlineUsers[$i]['username'] = $onlines[$i]['online_ip'];
+			}
+		}
+		//var_dump("<pre>",$onlineUsers,"</pre>");
+		
+		return $onlineUsers;
+	}
+
+	public function lookupIp($ip)
+	{
+		$result = [];
+		$query = @unserialize(file_get_contents('http://ip-api.com/php/'.$ip));
+		if($query && $query['status'] == 'success'){
+			$result['country'] = $query['country'];
+			$result['countryCode'] = $query['countryCode'];
+			$result['city'] = $query['city'];
+			$result['lat'] = $query['lat'];
+			$result['lon'] = $query['lon'];
+		}
+		return $result;
+	}
 
     // options[0] - Citeria valid: title(by default), text
     // options[1] - NumberToDisplay: any positive integer
@@ -404,7 +465,8 @@ class Tools
 		
 		// Jquery ui
 		if ($helper->getConfig('updatejqueryui') > 0) {
-			$GLOBALS['xoTheme']->addScript('browse.php?Frameworks/jquery/plugins/jquery.ui.js');
+			//$GLOBALS['xoTheme']->addScript('browse.php?Frameworks/jquery/plugins/jquery.ui.js');
+			$GLOBALS['xoTheme']->addScript('https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"');
 		}
 			if ($_SESSION["lasiusCoreEvents"] <= 1) {
 				//echo "inserted : ".$_SESSION["lasiusCoreEvents"];
