@@ -33,6 +33,7 @@ class LasiusCorePreload extends \XoopsPreloadItem
 	
     public static function eventCoreHeaderAddmeta()
     {
+		$GLOBALS['xoTheme']->addStylesheet(XOOPS_URL ."/modules/lasius/assets/css/style.css");
 		// initiate XoopsCache class
 		$xc = new \XoopsCache();
 		// Collect old cached to avoid double include script vars
