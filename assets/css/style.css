@@ -19,24 +19,21 @@
  * @min_xoops      2.5.9
  * @author         Culex - Email:<culex@culex.dk> - Website:<http://culex.dk>
  */
-ul.menu {
-	list-style: none;
-	background-color: #f5f5f5;
-	border-radius: 4px;
+#lasius-hidden-users {
+display:none;
+}
+.lasius-online-avatar {
+	height:20px; 
+	width:15px;
+	max-width:15px;
 }
 
-ul.menu > li {
-	display: inline-block;
+.lasius-online-flag {
+	width : 25px;
+	height : 18px;
+	max-width:25px;
 }
 
-ul.menu > li + li:before {  
-    content: "|\a0";
+.lasius-city-link {
 }
 
-.printOnly {
-	display: none;
-}
-
-img {
-	max-width: 300px;
-}
