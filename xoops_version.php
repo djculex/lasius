@@ -29,7 +29,7 @@ $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 // ------------------- Informations ------------------- //
 $modversion = [
 	'name'                => _MI_LASIUS_NAME,
-	'version'             => 1.16,
+	'version'             => 1.18,
 	'description'         => _MI_LASIUS_DESC,
 	'author'              => 'Culex',
 	'author_mail'         => 'culex@culex.dk',
@@ -62,7 +62,7 @@ $modversion = [
 	'module_website_url'  => 'www.xoops.org',
 	'module_website_name' => 'XOOPS Project',
 	'release'             => '05/25/2020',
-	'module_status'       => 'RC 1',
+	'module_status'       => 'RC 3',
 	'system_menu'         => 1,
 	'hasAdmin'            => 1,
 	'hasMain'             => 1,
@@ -116,86 +116,6 @@ $modversion['config'][] = [
 	'default'     => 0,
 ];
 
-// ------------------- Config ------------------- //
-// Keywords
-/*
-$modversion['config'][] = [
-	'name'        => 'keywords',
-	'title'       => '_MI_LASIUS_KEYWORDS',
-	'description' => '_MI_LASIUS_KEYWORDS_DESC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'text',
-	'default'     => 'lasius, ',
-];
-// Number column
-$modversion['config'][] = [
-	'name'        => 'numb_col',
-	'title'       => '_MI_LASIUS_NUMB_COL',
-	'description' => '_MI_LASIUS_NUMB_COL_DESC',
-	'formtype'    => 'select',
-	'valuetype'   => 'int',
-	'default'     => 1,
-	'options'     => [1 => '1', 2 => '2', 3 => '3', 4 => '4'],
-];
-// Divide by
-$modversion['config'][] = [
-	'name'        => 'divideby',
-	'title'       => '_MI_LASIUS_DIVIDEBY',
-	'description' => '_MI_LASIUS_DIVIDEBY_DESC',
-	'formtype'    => 'select',
-	'valuetype'   => 'int',
-	'default'     => 1,
-	'options'     => [1 => '1', 2 => '2', 3 => '3', 4 => '4'],
-];
-// Table type
-$modversion['config'][] = [
-	'name'        => 'table_type',
-	'title'       => '_MI_LASIUS_TABLE_TYPE',
-	'description' => '_MI_LASIUS_DIVIDEBY_DESC',
-	'formtype'    => 'select',
-	'valuetype'   => 'int',
-	'default'     => 'bordered',
-	'options'     => ['bordered' => 'bordered', 'striped' => 'striped', 'hover' => 'hover', 'condensed' => 'condensed'],
-];
-// Panel by
-$modversion['config'][] = [
-	'name'        => 'panel_type',
-	'title'       => '_MI_LASIUS_PANEL_TYPE',
-	'description' => '_MI_LASIUS_PANEL_TYPE_DESC',
-	'formtype'    => 'select',
-	'valuetype'   => 'text',
-	'default'     => 'default',
-	'options'     => ['default' => 'default', 'primary' => 'primary', 'success' => 'success', 'info' => 'info', 'warning' => 'warning', 'danger' => 'danger'],
-];
-
-// Advertise
-$modversion['config'][] = [
-	'name'        => 'advertise',
-	'title'       => '_MI_LASIUS_ADVERTISE',
-	'description' => '_MI_LASIUS_ADVERTISE_DESC',
-	'formtype'    => 'textarea',
-	'valuetype'   => 'text',
-	'default'     => '',
-];
-// Bookmarks
-$modversion['config'][] = [
-	'name'        => 'bookmarks',
-	'title'       => '_MI_LASIUS_BOOKMARKS',
-	'description' => '_MI_LASIUS_BOOKMARKS_DESC',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 0,
-];
-// Make Sample button visible?
-$modversion['config'][] = [
-	'name'        => 'displaySampleButton',
-	'title'       => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLE_BUTTON',
-	'description' => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLE_BUTTON_DESC',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 1,
-];
-*/
 // Maintained by
 $modversion['config'][] = [
 	'name'        => 'maintainedby',
