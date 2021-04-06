@@ -24,6 +24,7 @@ jQuery( document ).ready(function() {
 			var interValStart_reviveusermenublocksblk = setInterval(SystemBlock_checkusermenu, (Lasius_reviveusermenublock * 1000)); 
 			var interValStart_reviveextcalupceventsblocksblk = setInterval(ExtcalBlock_upcomingEvents, (Lasius_reviveextcalupceventsblock * 1000)); 
 			var interValStart_revivenewslatestnewsblocksblk = setInterval(NewsBlock_LatestNews, (Lasius_revivenewslatestnewsblock * 1000)); 
+			var interValStart_revivebannerblocksblk = setInterval(BannerBlock_Banners, (Lasius_revivebannerblock * 1000)); 
 			
 			var mutationObserver = new MutationObserver(function(mutations) {
 			  mutations.forEach(function(mutation) {
@@ -75,6 +76,11 @@ jQuery( document ).ready(function() {
 				if (!interValStart_revivenewslatestnewsblocksblk) {
 					console.log("Latest news = " + Lasius_revivenewslatestnewsblock);
 					interValStart_revivenewslatestnewsblocksblk = (Lasius_revivenewslatestnewsblock > 0) ? setInterval(SystemBlock_checkOnlineUsers, (Lasius_revivenewslatestnewsblock * 1000)):interValStart_revivenewslatestnewsblocksblk = undefined; 
+				}
+				
+				if (!interValStart_revivebannerblocksblk) {
+					console.log("Banner = " + Lasius_revivebannerblock);
+					interValStart_revivebannerblocksblk = (Lasius_revivebannerblock > 0) ? setInterval(BannerBlock_Banners, (Lasius_revivebannerblock * 1000)):interValStart_revivebannerblocksblk = undefined; 
 				}
 			});
 
@@ -268,6 +274,19 @@ jQuery( document ).ready(function() {
 					jQuery('aside h4.block-title:contains("' + Lasius_revivenewslatestnewsblock_title + '")').parent("aside").load(Lasius_systemurl + "/agent.php?type=newsrecentnews", function() {
 						jQuery(this).prepend('<h4 class="block-title">' + Lasius_revivenewslatestnewsblock_title + '</h4>');
 					}).fadeIn(1000);
+				}			
+			}
+			
+			function BannerBlock_Banners () {
+				this.interValStart_revivebannerblocksblk = undefined; //reset interval
+				if (Lasius_revivebannerblock > 0) {
+					jQuery("div#xo-bannerfix").each(function(){
+						jQuery(jQuery(this).load(Lasius_systemurl + "/agent.php?type=banner", function() {					
+							console.log('replace  banner.');
+							console.log(Lasius_systemurl + "/agent.php?type=banner");
+						})).fadeIn(1000);
+						//jQuery(this).children(':first').unwrap();
+					})
 				}			
 			}
 			

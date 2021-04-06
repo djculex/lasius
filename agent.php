@@ -201,7 +201,15 @@ switch ($type) {
 			$result = b_news_top_show($o);
 			$tpl->assign('block', $result);	
 			$tpl->display('db:news_block_top.tpl');
-			break;		
+			break;	
+
+	// ----- Banners -----
+		// Display banner
+		case 'banner':
+		require_once XOOPS_ROOT_PATH . '/include/functions.php';
+		$banner_handler = xoops_getModuleHandler('banner', 'system');
+		echo $banner_handler;
+		echo xoops_getbanner();
 }
 
 $GLOBALS['xoopsLogger']->activated = false;

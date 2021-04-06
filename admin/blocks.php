@@ -40,12 +40,24 @@ $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('bloc
 $db = $xoopsDB;
 $all = new \XoopsBlockHandler($db);
 
+// Check banners
+if ($xoopsConfig['banners'] > 0) {
+	if ($Db->DoesItExists('Banners') == false){ 
+		$Db->setVar('Banners', $Db->getSetSelected('Banners'), $type='save');
+	}
+	$nab['Banners'] = 'Banners';
+} else {
+	$Db->setVar('Banners', $Db->getSetSelected('Banners'), $type='delete');
+}
+
 // Get all visible blocks
 $s = new Criteria('visible', $value = '1', $operator = '=', $prefix = '', $function = '');
 $ab = $all->getList($criteria = $s);
 	foreach ($ab as $k => $v) {
 		$nab[$Db->getBlockTitleFromId($k)] = $Db->getBlockTitleFromName($v);
 	}
+//print_r($nab);
+
 $xoopsTpl->assign('activeblocks', $nab);
 
 // Get all blocks supported by this module
