@@ -56,7 +56,7 @@ class Db extends \XoopsPersistableObjectHandler
 			$type = "delete";
 		}
 		
-		if ($check > 0 && $value >= 1) {
+		if ($check >= 0 && $value >= 1) {
 			$type = "update";
 		}
 		
@@ -102,6 +102,19 @@ class Db extends \XoopsPersistableObjectHandler
         }
         return $sum;
 	}
+
+	public function DoesItExists($name)
+    {
+        //SELECT title FROM `xoops2511_newblocks` WHERE `show_func` = "b_system_online_show"
+        $query   = 'SELECT configname FROM ' . $GLOBALS['xoopsDB']->prefix('lasius_config') . " WHERE configname = '" . addslashes($name) . "' ORDER BY configname ASC ";
+        $result  = $GLOBALS['xoopsDB']->queryF($query);
+        $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
+        if ($counter >= 1) {
+            return true;
+        } else {
+			return false;
+		}
+    }
 	
 	public function getBlockTitle($showfunc)
     {
@@ -171,6 +184,9 @@ class Db extends \XoopsPersistableObjectHandler
                 $data = $sqlfetch['name'];
             }
         }
+		if ($title == "Banners") {
+			$data = "Banners";
+		}
         return $data;
     }
 	
