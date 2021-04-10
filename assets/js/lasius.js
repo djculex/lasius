@@ -62,14 +62,14 @@ jQuery(document).ready(function () {
 		 *
 		*/
 		
-		$(document).on('click', 'button#lasius-online-users-selector-new' , function(event) {
-				$('#lasius-hidden-users').dialog({
+		jQuery(document).on('click', 'button#lasius-online-users-selector-new' , function(event) {
+				jQuery('#lasius-hidden-users').dialog({
 					closeText : '',		
 					height:'auto', width:'auto',					
 					modal: false,
 					open: function ()
 					{
-						$("#lasius-hidden-users").show(); // hide html until load and manipulation is done					
+						jQuery("#lasius-hidden-users").show(); // hide html until load and manipulation is done					
 					},
 					title: Lasius_reviveonlineusersblock_title // set dialog title			
 				});
