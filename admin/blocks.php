@@ -56,8 +56,6 @@ $ab = $all->getList($criteria = $s);
 	foreach ($ab as $k => $v) {
 		$nab[$Db->getBlockTitleFromId($k)] = $Db->getBlockTitleFromName($v);
 	}
-//print_r($nab);
-
 $xoopsTpl->assign('activeblocks', $nab);
 
 // Get all blocks supported by this module
