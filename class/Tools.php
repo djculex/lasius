@@ -188,7 +188,8 @@ class Tools
 			$class = ($class === 'odd') ? 'even' : 'odd';
 			if (is_object($onlineUsers[$i]['user'])) {
 				$onlineUsers[$i]['useravatar'] = $onlineUsers[$i]['user']->getVar('user_avatar') ? '<img class="lasius-online-avatar" src="' . XOOPS_UPLOAD_URL . '/' . $onlineUsers[$i]['user']->getVar('user_avatar') . '" alt="" />' : '&nbsp;';
-				$onlineUsers[$i]['username'] = $onlineUsers[$i]['user']->getVar('uname');
+				//<a href=\"javascript:window.opener.location='" . XOOPS_URL . '/userinfo.php?uid=' . $onlineUsers[$i]['user']->getVar('uid') . "';window.close();\">" . $onlineUsers[$i]['user']->getVar('uname') . '</a>';
+				$onlineUsers[$i]['username'] = "<a href='" . XOOPS_URL . "/userinfo.php?uid=" . $onlineUsers[$i]['user']->getVar('uid') . "'>" . $onlineUsers[$i]['user']->getVar('uname') . "</a>";
 			} else {
 				$onlineUsers[$i]['useravatar'] = '<img class="lasius-online-avatar" src="' .XOOPS_URL. '/modules/lasius/assets/images/unknownuser.png" alt="" />';
 				$onlineUsers[$i]['username'] = $onlines[$i]['online_ip'];
@@ -470,7 +471,7 @@ class Tools
 		// Jquery ui
 		if ($helper->getConfig('updatejqueryui') > 0) {
 			//$GLOBALS['xoTheme']->addScript('browse.php?Frameworks/jquery/plugins/jquery.ui.js');
-			$GLOBALS['xoTheme']->addScript('https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"');
+			$GLOBALS['xoTheme']->addScript("https://code.jquery.com/ui/1.12.1/jquery-ui.min.js");
 		}
 			if ($_SESSION["lasiusCoreEvents"] <= 1) {
 				//echo "inserted : ".$_SESSION["lasiusCoreEvents"];
