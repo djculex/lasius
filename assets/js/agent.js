@@ -10,7 +10,10 @@ jQuery( document ).ready(function() {
 		// interval var = interValStart + _ + cfn;
 		// title var = cfn + _ + title;
 		// function name = cfn + Func();
-		
+			
+			if (Lasius_reviveonlineusersblock > 0) {
+				SystemBlock_checkOnlineUsers();
+			}
 		
 			// start interval after 5000 ms			
 			var interValStart_onlineusers = setInterval(SystemBlock_checkOnlineUsers, (Lasius_reviveonlineusersblock * 1000)); 
