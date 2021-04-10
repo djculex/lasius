@@ -80,12 +80,14 @@ class Db extends \XoopsPersistableObjectHandler
 	public function getSetSelected($name)
 	{
 		$sum = 0;
-		$sql = 'SELECT configvalue FROM ' . $this->db->prefix('lasius_config') . ' WHERE configname = "' . $name . '"';
-		$result = $this->db->queryF($sql);
-		$counter = $this->db->getRowsNum($result);
-        while ($row = $this->db->fetchArray($result)) {
-			$sum = $row['configvalue'];
-        }
+		if (!is_array($name) || $name == "") {
+			$sql = 'SELECT configvalue FROM ' . $this->db->prefix('lasius_config') . ' WHERE configname = "' . $name . '"';
+			$result = $this->db->queryF($sql);
+			$counter = $this->db->getRowsNum($result);
+			while ($row = $this->db->fetchArray($result)) {
+				$sum = $row['configvalue'];
+			}
+		}
         return $sum;
 	}
 	
@@ -119,6 +121,7 @@ class Db extends \XoopsPersistableObjectHandler
 	public function getBlockTitle($showfunc)
     {
         //SELECT title FROM `xoops2511_newblocks` WHERE `show_func` = "b_system_online_show"
+		$data = "";
         $query   = 'SELECT title FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks') . " WHERE show_func = '" . addslashes($showfunc) . "' ORDER BY title ASC ";
         $result  = $GLOBALS['xoopsDB']->queryF($query);
         $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
