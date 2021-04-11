@@ -47,7 +47,7 @@ $modversion = [
 	'min_php'             => '7.1',
 	'min_xoops'           => '2.5.9',
 	'min_admin'           => '1.2',
-	'min_db'              => ['mysql' => '5.6', 'mysqli' => '5.6'],
+	'min_db'              => ['mysql' => '5.5', 'mysqli' => '5.0'],
     'image'               => 'assets/images/logoModule.png',
 	'dirname'             => basename(__DIR__),
 	'sqlfile'             => ['mysql' => 'sql/mysql.sql'],
