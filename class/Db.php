@@ -94,14 +94,16 @@ class Db extends \XoopsPersistableObjectHandler
 	public function getSetActivated($name)
 	{
 		$sum = 0;
-		$sql = 'SELECT configactive FROM ' . $this->db->prefix('lasius_config') . ' WHERE configname = "' . $name . '"';
-		$result = $this->db->queryF($sql);
-        while ($row = $this->db->fetchArray($result)) {
-            $sum = $row['configactive'];
-        }
-        if ('' == $sum) {
-            $sum = 0;
-        }
+			if (!is_array($name) || $name == "") {
+			$sql = 'SELECT configactive FROM ' . $this->db->prefix('lasius_config') . ' WHERE configname = "' . $name . '"';
+			$result = $this->db->queryF($sql);
+			while ($row = $this->db->fetchArray($result)) {
+				$sum = $row['configactive'];
+			}
+			if ('' == $sum) {
+				$sum = 0;
+			}
+		}
         return $sum;
 	}
 
