@@ -51,6 +51,10 @@ $modversion = [
     'image'               => 'assets/images/logoModule.png',
 	'dirname'             => basename(__DIR__),
 	'sqlfile'             => ['mysql' => 'sql/mysql.sql'],
+	// Tables created by sql file (without prefix!)
+	'tables'              => [
+        $moduleDirName . '_' . 'config',
+	],
 	'sysicons16'          => '../../Frameworks/moduleclasses/icons/16',
 	'sysicons32'          => '../../Frameworks/moduleclasses/icons/32',
 	'modicons16'          => 'assets/icons/16',
