@@ -32,31 +32,33 @@ define('_LASIUS_BLOCK_AVATAR', 'Image');
 		</tr>
 		</thead>
 		<tbody>-->
-			<tr>
+			
 				<{section name=i loop=$blockhidden}>
-				<td>
-				<{$blockhidden[i].flaghtml}>
-				</td>
-				<{if $blockhidden[i].online_uid == "0"}>
-					<td>&nbsp;</td>
-				<{else}>
-					<td><{$blockhidden[i].useravatar}></td>
-				<{/if}>
-				
-				<{if $blockhidden[i].online_uid == "0"}>
-					<td><{$smarty.const._LASIUS_BLOCK_ANONYMOUS}></td>
-				<{else}>
-					<td><{$blockhidden[i].username}></td>
-				<{/if}>
+				<tr>
+					<td>
+					<{$blockhidden[i].flaghtml}>
+					</td>
+					<{if $blockhidden[i].online_uid == "0"}>
+						<td>&nbsp;</td>
+					<{else}>
+						<td><{$blockhidden[i].useravatar}></td>
+					<{/if}>
+					
+					<{if $blockhidden[i].online_uid == "0"}>
+						<td><{$smarty.const._LASIUS_BLOCK_ANONYMOUS}></td>
+					<{else}>
+						<td><{$blockhidden[i].username}></td>
+					<{/if}>
 
-				<td>
-					<a href = "https://www.openstreetmap.org/search?query=<{$blockhidden[i].ipinfo.city}> + <{$blockhidden[i].ipinfo.country}>" target="_BLANK">
-						<{$blockhidden[i].ipinfo.city}> / <{$blockhidden[i].ipinfo.country}>
-					</a>
-				</td>
-				<td><{$blockhidden[i].module}></td>
+					<td>
+						<a href = "https://www.openstreetmap.org/search?query=<{$blockhidden[i].ipinfo.city}> + <{$blockhidden[i].ipinfo.country}>" target="_BLANK">
+							<{$blockhidden[i].ipinfo.city}> / <{$blockhidden[i].ipinfo.country}>
+						</a>
+					</td>
+					<td><{$blockhidden[i].module}></td>
+				</tr>
 				<{/section}>
-			</tr>
+			
 		</tbody>
 	</table>
 </div>
