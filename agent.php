@@ -208,7 +208,7 @@ switch ($type) {
 		case 'banner':
 		require_once XOOPS_ROOT_PATH . '/include/functions.php';
 		$banner_handler = xoops_getModuleHandler('banner', 'system');
-		echo $banner_handler;
+		//echo $banner_handler;
 		echo xoops_getbanner();
 }
 
