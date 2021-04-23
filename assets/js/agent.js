@@ -1,4 +1,4 @@
-jQuery( document ).ready(function() {
+//jQuery( document ).ready(function() {
 	//console.log("document loaded");
 	jQuery( window ).on( "load", function() {
 		//console.log("window loaded");
@@ -280,10 +280,10 @@ jQuery( document ).ready(function() {
 				}			
 			}
 			
-			function BannerBlock_Banners () {
+			function BannerBlock_Banners() {
 				this.interValStart_revivebannerblocksblk = undefined; //reset interval
 				if (Lasius_revivebannerblock > 0) {
-					jQuery("div#xo-bannerfix").each(function(){
+					jQuery(".xoops-banner").each(function(){
 						jQuery(jQuery(this).load(Lasius_systemurl + "/agent.php?type=banner", function() {					
 							console.log('replace  banner.');
 							console.log(Lasius_systemurl + "/agent.php?type=banner");
@@ -295,4 +295,4 @@ jQuery( document ).ready(function() {
 			
 			
 	});
-});
+//});
