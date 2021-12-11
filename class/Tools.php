@@ -1,6 +1,7 @@
 <?php
 namespace XoopsModules\Lasius;
 
+use Xmf\Request;
 use XoopsModules\Lasius\{
 	Tools,
 	Db,
@@ -71,6 +72,7 @@ class Tools
 		$title   = $db->moduleNameById($url);
         $mbid    = $db->midByName($title);
 		$mbid	 = ($mbid != '') ? $mbid : $this->searchStringPart($url);
+		
         $count   = $db->CountMidByName($mbid);
         if (mt_rand(1, 100) < 60) {
             $xoopsOnlineHandler->gc(150);
@@ -84,10 +86,12 @@ class Tools
             $uname = '';
             $name  = '';
         }
-        $xoopsupdate         = $xoopsOnlineHandler->write($uid, $uname, time(), $mbid, \Xmf\IPAddress::fromRequest()->asReadable());
+		//echo $uid. " - ". $uname . " - " . $mbid. "<br>";
+        /*$xoopsupdate = $xoopsOnlineHandler->write($uid, $uname, time(), $mbid, \Xmf\IPAddress::fromRequest()->asReadable());
         if (!$xoopsupdate) {
             //xoops_error("Lasius write error");
         }
+		*/
     }
 
     public function b_system_online_show($url)
@@ -95,7 +99,7 @@ class Tools
         global $xoopsUser, $xoopsModule;
 		$db = new Db();
 		$helper = \XoopsModules\Lasius\Helper::getInstance();
-		$this->update($url);
+		//$this->update($url);
         /* @var XoopsOnlineHandler $online_handler */
 		$start = 0;
         $online_handler = xoops_getHandler('online');
@@ -122,6 +126,7 @@ class Tools
         $onlines = $online_handler->getAll($criteria);
         if (!empty($onlines)) {
             $title   = $db->moduleNameById($url);
+			
             $mbid    = $db->midByName($title);
 			$mbid	 = ($mbid != '') ? $mbid : $this->searchStringPart($url);
 			if ($title == "") {
@@ -176,6 +181,7 @@ class Tools
 		/* @var XoopsModuleHandler $module_handler */
 		$module_handler = xoops_getHandler('module');
 		$modules = $module_handler->getList(new \Criteria('isactive', 1));
+		
 		for ($i = 0; $i < $count; ++$i) {
 			if ($onlines[$i]['online_uid'] == 0) {
 				$onlineUsers[$i]['user'] = '';
@@ -186,6 +192,7 @@ class Tools
 			$onlineUsers[$i]['ipinfo'] = $this->lookupIp($onlineUsers[$i]['ip']);
 			$onlineUsers[$i]['updated'] = $onlines[$i]['online_updated'];
 			$onlineUsers[$i]['module'] = ($onlines[$i]['online_module'] > 0) ? $modules[$onlines[$i]['online_module']] : '';
+			//echo $onlineUsers[$i]['module']." -> ".$onlineUsers[$i]['online_uid'];
 			$onlineUsers[$i]['flaghtml'] = '<img class="lasius-online-flag" src = "https://www.verdensflag.dk/data/flags/h80/' .  strtolower($onlineUsers[$i]['ipinfo']['countryCode']) . '.webp" alt="' . $onlineUsers[$i]['ipinfo']['country'] . '" />';
 		}
 		$class = 'even';
