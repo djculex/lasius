@@ -1,8 +1,12 @@
 <?php
 namespace XoopsModules\Lasius;
 
-use XoopsModules\Lasius;
-use XoopsModules\Lasius\Constants;
+use XoopsModules\Lasius\{
+	Tools,
+	Db,
+	Helper,
+	Constants
+};
 
 class Tools
 {
@@ -156,7 +160,9 @@ class Tools
 	
 	public function getOnlineUsers()
 	{
-		$isadmin = $xoopsUserIsAdmin;
+		global $xoopsUser, $xoopsModule;
+		$helper = Helper::getInstance();
+		$isadmin = $helper->isUserAdmin();
 		$start = 0;
 		/* @var XoopsOnlineHandler $online_handler */
 		$online_handler = xoops_getHandler('online');
@@ -178,7 +184,6 @@ class Tools
 			}
 			$onlineUsers[$i]['ip'] = $onlines[$i]['online_ip'];
 			$onlineUsers[$i]['ipinfo'] = $this->lookupIp($onlineUsers[$i]['ip']);
-			
 			$onlineUsers[$i]['updated'] = $onlines[$i]['online_updated'];
 			$onlineUsers[$i]['module'] = ($onlines[$i]['online_module'] > 0) ? $modules[$onlines[$i]['online_module']] : '';
 			$onlineUsers[$i]['flaghtml'] = '<img class="lasius-online-flag" src = "https://www.verdensflag.dk/data/flags/h80/' .  strtolower($onlineUsers[$i]['ipinfo']['countryCode']) . '.webp" alt="' . $onlineUsers[$i]['ipinfo']['country'] . '" />';
@@ -202,15 +207,27 @@ class Tools
 
 	public function lookupIp($ip)
 	{
-		$result = [];
-		$query = @unserialize(file_get_contents('http://ip-api.com/php/'.$ip));
-		if($query && $query['status'] == 'success'){
-			$result['country'] = $query['country'];
-			$result['countryCode'] = $query['countryCode'];
-			$result['city'] = $query['city'];
-			$result['lat'] = $query['lat'];
-			$result['lon'] = $query['lon'];
+		$api_url = "http://www.geoplugin.net/php.gp?ip={$ip}";
+		$port = 80;
+		$ch = curl_init( );
+		curl_setopt ( $ch, CURLOPT_URL, $api_url );
+		curl_setopt ( $ch, CURLOPT_PORT, $port );
+		curl_setopt ( $ch, CURLOPT_POST, 1 );
+		curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
+		// Allowing cUrl funtions 20 second to execute
+		curl_setopt ( $ch, CURLOPT_TIMEOUT, 5 );
+		// Waiting 20 seconds while trying to connect
+		curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, 5 );                                 
+		$query = unserialize(curl_exec( $ch ));
+		print_r($result);
+		if($query && $query['geoplugin_status'] == 200){
+			$result['country'] = $query['geoplugin_countryName'];
+			$result['countryCode'] = $query['geoplugin_countryCode'];
+			$result['city'] = $query['geoplugin_city'];
+			$result['lat'] = $query['geoplugin_latitude'];
+			$result['lon'] = $query['geoplugin_longitude'];
 		}
+		
 		return $result;
 	}
 
