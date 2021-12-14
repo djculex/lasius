@@ -226,15 +226,15 @@ class Tools
 		// Waiting 20 seconds while trying to connect
 		curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, 5 );                                 
 		$query = unserialize(curl_exec( $ch ));
-		print_r($result);
-		if($query && $query['geoplugin_status'] == 200){
+		curl_close ($ch);
+		
+		//if($query && $query['geoplugin_status'] == 200){
 			$result['country'] = $query['geoplugin_countryName'];
 			$result['countryCode'] = $query['geoplugin_countryCode'];
 			$result['city'] = $query['geoplugin_city'];
 			$result['lat'] = $query['geoplugin_latitude'];
 			$result['lon'] = $query['geoplugin_longitude'];
-		}
-		
+		//}
 		return $result;
 	}
 
